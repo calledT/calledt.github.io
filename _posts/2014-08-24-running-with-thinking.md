@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 当我在跑步时我在想些什么？
-description:
+description: 当我跑步时没人陪我，不能谈些什么，只能想些什么。
 keywords: Life
 ---
 
