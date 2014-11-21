@@ -2,27 +2,27 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
 <title type="text">T 馆</title>
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
-<link rel="self" type="application/atom+xml" href="http://localhost:4000/feed.xml" />
-<link rel="alternate" type="text/html" href="http://localhost:4000" />
-<updated>2014-11-21T12:30:33+08:00</updated>
-<id>http://localhost:4000/</id>
+<link rel="self" type="application/atom+xml" href="//calledt.com/feed.xml" />
+<link rel="alternate" type="text/html" href="//calledt.com" />
+<updated>2014-11-21T12:45:25+08:00</updated>
+<id>//calledt.com/</id>
 <author>
   <name>Kimi</name>
-  <uri>http://localhost:4000/</uri>
+  <uri>//calledt.com/</uri>
   <email></email>
 </author>
 
 
 <entry>
   <title type="html"><![CDATA[当我在跑步时我在想些什么？]]></title>
- <link rel="alternate" type="text/html" href="http://localhost:4000/running-with-thinking/" />
-  <id>http://localhost:4000/running-with-thinking</id>
+ <link rel="alternate" type="text/html" href="//calledt.com/running-with-thinking/" />
+  <id>//calledt.com/running-with-thinking</id>
   <updated>2014-11-21T00:00:00-00:00</updated>
   <published>2014-08-24T00:00:00+08:00</published>
   
   <author>
     <name>Kimi</name>
-    <uri>http://localhost:4000</uri>
+    <uri>//calledt.com</uri>
     <email></email>
   </author>
   <content type="html">&lt;h3 id=&quot;section&quot;&gt;关于跑步&lt;/h3&gt;
@@ -40,27 +40,27 @@
 &lt;/ul&gt;
 
 
-  &lt;p&gt;&lt;a href=&quot;http://localhost:4000/running-with-thinking/&quot;&gt;当我在跑步时我在想些什么？&lt;/a&gt; was originally published by Kimi at &lt;a href=&quot;http://localhost:4000&quot;&gt;T 馆&lt;/a&gt; on August 24, 2014.&lt;/p&gt;</content>
+  &lt;p&gt;&lt;a href=&quot;//calledt.com/running-with-thinking/&quot;&gt;当我在跑步时我在想些什么？&lt;/a&gt; was originally published by Kimi at &lt;a href=&quot;//calledt.com&quot;&gt;T 馆&lt;/a&gt; on August 24, 2014.&lt;/p&gt;</content>
 </entry>
 
 
 <entry>
   <title type="html"><![CDATA[最近的生活]]></title>
- <link rel="alternate" type="text/html" href="http://localhost:4000/firstblog/" />
-  <id>http://localhost:4000/firstblog</id>
+ <link rel="alternate" type="text/html" href="//calledt.com/firstblog/" />
+  <id>//calledt.com/firstblog</id>
   <updated>2014-11-21T00:00:00-00:00</updated>
   <published>2014-06-15T00:00:00+08:00</published>
   
   <author>
     <name>Kimi</name>
-    <uri>http://localhost:4000</uri>
+    <uri>//calledt.com</uri>
     <email></email>
   </author>
   <content type="html">&lt;h3 id=&quot;section&quot;&gt;关于本站&lt;/h3&gt;
 
-&lt;p&gt;这个&lt;strong&gt;&lt;a href=&quot;www.calledt.com&quot;&gt;www.calledt.com&lt;/a&gt;&lt;/strong&gt;域名买回来两个月了，买回来的时候还饶有兴致要自己设计一个&lt;strong&gt;jekyll&lt;/strong&gt;的主题，尝试了两天之后觉得做得太丑，热情就退却了，所以荒废了两个月没去搭理它。&lt;/p&gt;
-
-&lt;p&gt;周末折腾了两天&lt;strong&gt;&lt;a href=&quot;http://www.vagrantup.com/&quot;&gt;vagrant&lt;/a&gt;&lt;/strong&gt;之后，终于在vagrant里把grunt的东西跑起来了，忽然就想起顺便把博客也整一下呗。当然，这次不会自己设计主题了，所以就在网上找到这个主题。主题的作者是&lt;a href=&quot;http://www.zhanxin.info/&quot;&gt;掌心&lt;/a&gt;，他同时也维护着其它几个主题，做得挺好的，有兴趣的童鞋去支持一下。&lt;/p&gt;
+&lt;p&gt;这个&lt;strong&gt;&lt;a href=&quot;www.calledt.com&quot;&gt;www.calledt.com&lt;/a&gt;&lt;/strong&gt;域名买回来两个月了，买回来的时候还饶有兴致要自己设计一个&lt;strong&gt;jekyll&lt;/strong&gt;的主题，尝试了两天之后觉得做得太丑，热情就退却了，所以荒废了两个月没去搭理它。
+&lt;!-- more --&gt;
+周末折腾了两天&lt;strong&gt;&lt;a href=&quot;http://www.vagrantup.com/&quot;&gt;vagrant&lt;/a&gt;&lt;/strong&gt;之后，终于在vagrant里把grunt的东西跑起来了，忽然就想起顺便把博客也整一下呗。当然，这次不会自己设计主题了，所以就在网上找到这个主题。主题的作者是&lt;a href=&quot;http://www.zhanxin.info/&quot;&gt;掌心&lt;/a&gt;，他同时也维护着其它几个主题，做得挺好的，有兴趣的童鞋去支持一下。&lt;/p&gt;
 
 &lt;h3 id=&quot;section-1&quot;&gt;最近&lt;/h3&gt;
 
@@ -80,7 +80,7 @@
 &lt;/ul&gt;
 
 
-  &lt;p&gt;&lt;a href=&quot;http://localhost:4000/firstblog/&quot;&gt;最近的生活&lt;/a&gt; was originally published by Kimi at &lt;a href=&quot;http://localhost:4000&quot;&gt;T 馆&lt;/a&gt; on June 15, 2014.&lt;/p&gt;</content>
+  &lt;p&gt;&lt;a href=&quot;//calledt.com/firstblog/&quot;&gt;最近的生活&lt;/a&gt; was originally published by Kimi at &lt;a href=&quot;//calledt.com&quot;&gt;T 馆&lt;/a&gt; on June 15, 2014.&lt;/p&gt;</content>
 </entry>
 
 </feed>
