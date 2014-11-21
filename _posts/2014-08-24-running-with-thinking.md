@@ -1,8 +1,13 @@
 ---
 layout: post
 title: 当我在跑步时我在想些什么？
-description: 当我跑步时没人陪我，不能谈些什么，只能想些什么。
-keywords: Life
+description: "当我跑步时没人陪我，不能谈些什么，只能想些什么。"
+modified: 2014-11-21
+tags: [生活,思考]
+image:
+  feature: abstract-3.jpg
+  credit: dargadgetz
+  creditlink: http://www.dargadgetz.com/ios-7-abstract-wallpaper-pack-for-iphone-5-and-ipod-touch-retina/
 ---
 
 ### 关于跑步

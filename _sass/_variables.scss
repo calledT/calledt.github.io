@@ -1,0 +1,51 @@
+// Typography
+// --------------------------------------------------
+
+$base-font: 'Georgia', 'Xin Gothic', 'Hiragino Sans GB', 'Droid Sans Fallback', 'Microsoft YaHei', sans-serif;
+$heading-font: $base-font;
+$caption-font: $base-font;
+$code-font: monospace;
+$alt-font: serif;
+
+$doc-font-size: 16;
+$doc-line-height: 26;
+
+
+// set-up the body font-size / line-height
+body {
+	margin-top: 0px + $doc-line-height;
+	font-size: 0px + $doc-font-size;
+}
+
+
+// Colors
+// --------------------------------------------------
+$base-color				   : #222;
+$body-color      		 : #e8e8e8;
+$text-color      		 : #444443;
+$heading-color        : #222223;
+$comp-color 	 		   : complement($base-color);
+$border-color    		 : lighten($base-color,60);
+$white           		 : #fff;
+$black           		 : #000;
+$link-color 		     : #111;
+
+$primary			       : $base-color;
+$success			       : #5cb85c;
+$warning			       : #dd8338;
+$danger				       : #C64537;
+$info				         : #308cbc;
+
+
+// Screen Size
+// --------------------------------------------------
+
+$small               : "only screen and (min-width: 30em)";
+$medium              : "only screen and (min-width: 48em)";
+$large               : "only screen and (min-width: 62.5em)";
+
+
+// 社交分享图标颜色
+// --------------------------------------------------
+
+$social-icons: (weibo: #e90d24, qq: #0098e6, taobao: #ff4200, weixin: #3eb742, txweibo: #1fb9e6, qzone: #ffc100, baidu: #2625e5, douban: #0d9430, renren: #1D7AC0);

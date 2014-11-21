@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+<title type="text">T 馆</title>
+<generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
+<link rel="self" type="application/atom+xml" href="http://localhost:4000/feed.xml" />
+<link rel="alternate" type="text/html" href="http://localhost:4000" />
+<updated>2014-11-21T12:30:33+08:00</updated>
+<id>http://localhost:4000/</id>
+<author>
+  <name>Kimi</name>
+  <uri>http://localhost:4000/</uri>
+  <email></email>
+</author>
+
+
+<entry>
+  <title type="html"><![CDATA[当我在跑步时我在想些什么？]]></title>
+ <link rel="alternate" type="text/html" href="http://localhost:4000/running-with-thinking/" />
+  <id>http://localhost:4000/running-with-thinking</id>
+  <updated>2014-11-21T00:00:00-00:00</updated>
+  <published>2014-08-24T00:00:00+08:00</published>
+  
+  <author>
+    <name>Kimi</name>
+    <uri>http://localhost:4000</uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;h3 id=&quot;section&quot;&gt;关于跑步&lt;/h3&gt;
+
+&lt;p&gt;前几周的一个机遇，饶有兴致的和同事下班后去附近的公园慢跑，然后就停不下来了。那次跑步之前，已经很久没有运动过了，现在连追个公交都会气喘，可想第一天去跑步是什么情形。17分钟的跑程，被人甩了将近一千米，而且还是女的这事我能乱说麽。痛定思痛之后，决定发奋图强。上网买了双跑鞋，周末在学校里跑，这是第二周也是第三次慢跑，昨天太冲了，一开始冲得太猛，跑了一半肚子痛得没法坚持下去，今天就汲取教训，一圈&lt;strong&gt;3.7公里&lt;/strong&gt;下来，&lt;strong&gt;33分钟&lt;/strong&gt;，出了汗还不累，要的就是这效果了。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;关于思考&lt;/h3&gt;
+
+&lt;p&gt;村上春树有一本书叫《当我在跑步时我谈些什么》，虽然很喜欢他，也看了不少他的作品，但这本没看，所以不知道他跑步时在谈些什么。以此为引子来说说我跑步时在想些什么:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;想睡，不知道为什么这几次跑步时都有种昏昏欲睡的感觉，和看书那种状态差不多。可能是夕阳太美了，嗯，一定是这样的。&lt;/li&gt;
+  &lt;li&gt;清醒了一下就想一想跑完了要怎么犒劳自己，等会鸡翅是要买一对呢，还是要买两个，真纠结。&lt;/li&gt;
+  &lt;li&gt;大部分时间还是在想那些感兴趣的东西，比如今天去跑步前就看了好几篇关于&lt;code&gt;px&lt;/code&gt;,&lt;code&gt;em&lt;/code&gt;,&lt;code&gt;rem&lt;/code&gt;使用的文章，就目前国内浏览器的状况来说，使用那个单位都不能完美，真是让我这种非处女座但追求完美的（就是有一丢丢强迫症）人感到难受。然后接下来大部分时间就在纠结接下来的项目到底要使用那个单位（这又可以写另外一篇文章了）。&lt;/li&gt;
+&lt;/ul&gt;
+
+
+  &lt;p&gt;&lt;a href=&quot;http://localhost:4000/running-with-thinking/&quot;&gt;当我在跑步时我在想些什么？&lt;/a&gt; was originally published by Kimi at &lt;a href=&quot;http://localhost:4000&quot;&gt;T 馆&lt;/a&gt; on August 24, 2014.&lt;/p&gt;</content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[最近的生活]]></title>
+ <link rel="alternate" type="text/html" href="http://localhost:4000/firstblog/" />
+  <id>http://localhost:4000/firstblog</id>
+  <updated>2014-11-21T00:00:00-00:00</updated>
+  <published>2014-06-15T00:00:00+08:00</published>
+  
+  <author>
+    <name>Kimi</name>
+    <uri>http://localhost:4000</uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;h3 id=&quot;section&quot;&gt;关于本站&lt;/h3&gt;
+
+&lt;p&gt;这个&lt;strong&gt;&lt;a href=&quot;www.calledt.com&quot;&gt;www.calledt.com&lt;/a&gt;&lt;/strong&gt;域名买回来两个月了，买回来的时候还饶有兴致要自己设计一个&lt;strong&gt;jekyll&lt;/strong&gt;的主题，尝试了两天之后觉得做得太丑，热情就退却了，所以荒废了两个月没去搭理它。&lt;/p&gt;
+
+&lt;p&gt;周末折腾了两天&lt;strong&gt;&lt;a href=&quot;http://www.vagrantup.com/&quot;&gt;vagrant&lt;/a&gt;&lt;/strong&gt;之后，终于在vagrant里把grunt的东西跑起来了，忽然就想起顺便把博客也整一下呗。当然，这次不会自己设计主题了，所以就在网上找到这个主题。主题的作者是&lt;a href=&quot;http://www.zhanxin.info/&quot;&gt;掌心&lt;/a&gt;，他同时也维护着其它几个主题，做得挺好的，有兴趣的童鞋去支持一下。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;最近&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;最近，世界杯开赛了，NBA也总决赛了，那种看球的激情却不再了，连伪球迷都算不上！&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;最近，去打了一场羽毛球，好像是半年来第一次运动吧，记忆变得好差，可是对某些东西却念念不忘！&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;最近，半个月来今天才打电话回家，家里下雨了！&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;最近，在京东上买了一些书，看了&lt;a href=&quot;http://item.jd.com/11411286.html&quot;&gt;《吃遍广东之潮汕的原味时光》&lt;/a&gt;前几篇之后，好想认真的逛逛潮汕！&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+
+  &lt;p&gt;&lt;a href=&quot;http://localhost:4000/firstblog/&quot;&gt;最近的生活&lt;/a&gt; was originally published by Kimi at &lt;a href=&quot;http://localhost:4000&quot;&gt;T 馆&lt;/a&gt; on June 15, 2014.&lt;/p&gt;</content>
+</entry>
+
+</feed>

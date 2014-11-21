@@ -1,0 +1,55 @@
+
+@font-face {font-family: "iconfont";
+  src: url('../fonts/iconfont.eot'); /* IE9*/
+  src: url('../fonts/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../fonts/iconfont.woff') format('woff'), /* chrome、firefox */
+  url('../fonts/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('../fonts/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-github:before { content: "\e60b"; }
+
+.icon-qq-square:before { content: "\e601"; }
+
+.icon-txweibo-square:before { content: "\e602"; }
+
+.icon-weibo-square:before { content: "\e603"; }
+
+.icon-qzone-square:before { content: "\e604"; }
+
+.icon-renren-square:before { content: "\e609"; }
+
+.icon-douban-square:before { content: "\e605"; }
+
+.icon-baidu-square:before { content: "\e606"; }
+
+.icon-weixin-square:before { content: "\e607"; }
+
+.icon-googleplus:before { content: "\e60c"; }
+
+.icon-weibo:before { content: "\e60d"; }
+
+.icon-less-than:before { content: "\e60a"; }
+
+.icon-facebook:before { content: "\e60e"; }
+
+.icon-twitter:before { content: "\e60f"; }
+
+.icon-tag:before { content: "\e600"; }
+
+.icon-linkin:before { content: "\e610"; }
+
+.icon-taobao-square:before { content: "\e608"; }
+
+.icon-tumblr:before { content: "\e611"; }
+
+.icon-flickr:before { content: "\e612"; }

@@ -1,59 +1,67 @@
-markdown: redcarpet
-highlighter: true
-plugins: ./_plugins
-paginate: 8
+title:            T 馆
+description:      "前端工程师,F2E,JS,CSS,HTML,HTML5,CSS3,WEB"
+reading_time:     true
+words_per_minute: 200
+# Your site's domain goes here (eg: //mmistakes.github.io, http://mademistakes.com, etc)
+# When testing locally leave blank or use http://localhost:4000
+url: http://localhost:4000
 
-safe: false
+# 作者信息
+owner:
+  name:           Kimi
+  avatar:         avator-gray.jpg
+  bio:            "一Cl 一Editor 一世界"
 
-#站点基础配置
-title: calledT
-subTitle: 叫我Kimi，不要叫我唱大猩猩！
-description: null
-url:
-feed: /atom.xml
-
-#菜单配置
-nav:
-  - text: 首页
-    url: /index.html
-    icon: icon-home
-    class: home
-  - text: 文章归档
-    url: /archives.html
-    icon: icon-reorder
-    class: none
-  - text: 关于我
-    url: /contact.html
-    icon: icon-envelope-alt
-    class: none
-  - text: 联系我
-    url: http://weibo.com/huanggengtao
-    icon: icon-heart
-    class: none
-  - text: 博客源代码
-    url: https://github.com/calledT/calledt.github.io
-    icon: icon-github
-    class: none
-
-page:
-  - text: 文章分类
-    url: /archives.html
-    last: true
-  - text: 友情链接
-    url: /links.html
-    last: true
-  - text: 关于我
-    url: /contact.html
-    last: false
-
-author:
-  name: Kimi
-
-#comment config
-disqus:
-  config: false
-  id:
-
+#评论插件配置
 duoshuo:
   config: true
-  id: calledt
+  shortname: calledt
+
+disqus:
+  config: false
+  shortname: calledt
+
+
+# 用于所有页面的背景图
+background:
+
+# Analytics and webmaster tools stuff goes here
+baidu_tongji: f85720f7b69b6aa1f1dbfcaeea5ae412
+google_analytics:
+google_verify:
+# https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
+bing_verify:
+
+# http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+timezone:    Asia/Shanghai
+future:      true
+highlighter: pygments
+markdown:    kramdown
+gems:
+  - jekyll-sitemap
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# https://github.com/mojombo/jekyll/wiki/Permalinks
+permalink:   /:categories/:title/
+
+# Amount of post to show on home page
+paginate: 5
+
+kramdown:
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  use_coderay: true
+
+  coderay:
+    coderay_line_numbers: nil
+    coderay_line_numbers_start: 1
+    coderay_tab_width: 4
+    coderay_bold_every: 10
+    coderay_css: class
+
+include: [".htaccess"]
+exclude: ["lib", "config.rb", "Capfile", "config", "Gemfile", "Gemfile.lock", "README.md", "LICENSE", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules"]

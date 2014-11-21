@@ -1,8 +1,13 @@
 ---
 layout: post
 title: 最近的生活
-description: 第一篇博客，说说最近的生活。
-keywords: Life
+description: "最近的生活。"
+modified: 2014-11-21
+tags: [生活]
+image:
+  feature: abstract-3.jpg
+  credit: dargadgetz
+  creditlink: http://www.dargadgetz.com/ios-7-abstract-wallpaper-pack-for-iphone-5-and-ipod-touch-retina/
 ---
 
 ### 关于本站

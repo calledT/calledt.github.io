@@ -1,22 +1,25 @@
-# iLotus - 又一个简洁的博客主题
+# HPSTR Jekyll Theme
 
-这个主题是我在 2012 年设计和开发出来的，感觉它的特点，就是写在这里的文字很有底气，耐看。整体风格简洁大方，功能简单。加分点：
+They say three times the charm, so here is another free responsive Jekyll theme for you. I've learned a ton since open sourcing [my first two themes](https://mademistakes.com/work/jekyll-themes/), and wanted to try a few new things this time around. If you've used my previous themes most of this should be familiar territory.
 
-* 原先我是Wordpress的，所以它的源码是Wordpress主题；现在我又改成Jekyll主题；
-* iconfont，响应式设计，中文字体排版。
+## What HPSTR brings to the table:
 
-注：php 源码可能会有些兼容性问题，可以给我提 issuse。主题的[DEMO](http://template.zhanxin.info/iLotus/index.html)，欢迎使用，但请保留底部版权。
+* Modern and minimal design.
+* Responsive templates for post, page, and post index `_layouts`. Looks great on mobile, tablet, and desktop devices.
+* Gracefully degrades in older browsers. Compatible with Internet Explorer 8+ and all modern browsers.  
+* Sweet animated menu with support for drop-downs.
+* Optional [Disqus](http://disqus.com) comments and social sharing links.
+* [Open Graph](https://developers.facebook.com/docs/opengraph/) and [Twitter Cards](https://dev.twitter.com/docs/cards) support for a better social sharing experience.
+* Simple [custom 404 page](http://mmistakes.github.io/hpstr-jekyll-theme/404.html) to get you started.
+* Stylesheets for Pygments and Coderay [syntax highlighting](http://mmistakes.github.io/hpstr-jekyll-theme/code-highlighting-post/) to make your code examples look snazzy
+* [Available in Spanish](https://github.com/cruznick/hpstr-jekyll-theme/tree/es). Thanks [@cruznick](https://github.com/cruznick)!
 
-## Wordpress 主题使用方法
+![HPSTR Theme Preview screenshot](http://mmistakes.github.io/hpstr-jekyll-theme/images/hpstr-jekyll-theme-preview.jpg)
 
-1. ```git clone``` 源代码（或者直接下载）；
-2. 将```iLotus-wp```目录拷贝到```wp-content/themes```目录；
-3. 登录后台，设置主题为```iLotus```即可。
+---
 
-> 如果还有其他插件需求，可以提 issuse.
+## Getting Started
 
-## Jekyll 主题使用方法
+HPSTR takes advantage of Sass and data files to make customizing easier. These features require Jekyll 2.x and will not work with older versions of Jekyll.
 
-1. ```iLotus-jekyll```目录下运行```jekyll server```即可通过```localhost:4000```访问；
-2. 可通过```_config.yml```文件修改或增加自定义内容；
-3. 这里只给出了2个页面的定义样式（archives和contact）,可以自己根据需求定义。
+To learn how to install and use this theme check out the [Setup Guide](https://mmistakes.github.io/hpstr-jekyll-theme/theme-setup/) for more information.
