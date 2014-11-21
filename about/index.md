@@ -1,6 +1,6 @@
 ---
 layout: page
-title: About the Theme
+title: 关于 Kimi
 image:
   feature: abstract-5.jpg
   credit: dargadgetz
@@ -8,24 +8,14 @@ image:
 comments: false
 ---
 
-They say three times the charm, so here is another free responsive Jekyll theme for you. I've learned a ton since open sourcing my first two themes [on Github](http://github.com/mmistakes), and wanted to try a few new things this time around. If you've used my previous themes most of this should be familiar territory...
+Kimi 这个英文名的由来是因为我喜欢的一位 F1 赛车手 —— Kimi·Raikkonen（莱科宁）。至于为什么不是取 Raikkonen 这个名字呢，主要是因为记不住，囧！
 
-## What HPSTR brings to the table:
+去年（2013）年的 《爸爸去哪儿》热遍大江南北，我也看了。好多同事以为此 Kimi 就是 彼 Kimi（会叫爸比那位），要我唱小猩猩，作为程序猿，我不能唱 —— apes don't sing apes。
 
-* Responsive templates for post, page, and post index `_layouts`. Looks great on mobile, tablet, and desktop devices.
-* Gracefully degrads in older browsers. Compatible with Internet Explorer 8+ and all modern browsers.  
-* Modern and minimal design.
-* Sweet animated menu.
-* Background image support.
-* Readable typography to make your words shine.
-* Support for large images to call out your favorite posts.
-* Comments powered by [Disqus](http://disqus.com) if you choose to enable.
-* Simple and clear permalink structure[^1].
-* [Open Graph](https://developers.facebook.com/docs/opengraph/) and [Twitter Cards](https://dev.twitter.com/docs/cards) support for a better social sharing experience.
-* Simple [custom 404 page]({{ site.url }}/404.html) to get you started.
-* Stylesheets for Pygments and Coderay [syntax highlighting]({{ site.url }}/code-highlighting-post/) to make your code examples look snazzy
-* [Grunt](http://gruntjs.com) build script for easy theme development
+### 唱歌不行，但以下技术还是略知一二
 
-<div markdown="0"><a href="{{ site.url }}/theme-setup" class="btn btn-info">Install the Theme</a></div>
+`JS` `CSS` `HTML` `CSS3` `HTML5` `NODEJS` `GIT` `REGEXP` `JAVA` `GRUNT` `PS` `UNIX` `GULP` `SASS` `LESS` `JASMINE` `KARMA` `SVN` `NGINX` `VIM`
 
-[^1]: Example: *domain.com/category-name/post-title*
+### 自从换了RMBP以后，腰不痛了，眼睛也不酸了，代码能一口气写上50行
+
+主要开发工具 `Sublime text` && `Terminal` && `网易云音乐`
