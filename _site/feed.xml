@@ -2,27 +2,101 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
 <title type="text">T 馆</title>
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
-<link rel="self" type="application/atom+xml" href="/feed.xml" />
-<link rel="alternate" type="text/html" href="" />
-<updated>2014-11-21T14:11:24+08:00</updated>
-<id>/</id>
+<link rel="self" type="application/atom+xml" href="http://localhost:4000/feed.xml" />
+<link rel="alternate" type="text/html" href="http://localhost:4000" />
+<updated>2014-11-24T16:27:57+08:00</updated>
+<id>http://localhost:4000/</id>
 <author>
   <name>Kimi</name>
-  <uri>/</uri>
+  <uri>http://localhost:4000/</uri>
   <email></email>
 </author>
 
 
 <entry>
+  <title type="html"><![CDATA[自动登陆那点事]]></title>
+ <link rel="alternate" type="text/html" href="http://localhost:4000/about-autologin/" />
+  <id>http://localhost:4000/about-autologin</id>
+  <updated>2014-11-24T00:00:00-00:00</updated>
+  <published>2014-11-24T00:00:00+08:00</published>
+  
+  <author>
+    <name>Kimi</name>
+    <uri>http://localhost:4000</uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;h3 id=&quot;cookie--session&quot;&gt;cookie 和 session&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol&quot; title=&quot;http&quot;&gt;http&lt;/a&gt;是无状态的，无状态是怎么样一种情况呢？可以简单解释一下：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;比如用户张三依次发起两次请求，仅通过 &lt;a href=&quot;http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol&quot; title=&quot;http&quot;&gt;http&lt;/a&gt;
+是无法知道第一次请求和第二次请求是由同一个用户张三发起的。
+&lt;!-- more --&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;所以无法仅通过 &lt;a href=&quot;http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol&quot; title=&quot;http&quot;&gt;http&lt;/a&gt; 来识别用户，我们就要寻找另外途径，这就需要用到 &lt;a href=&quot;http://en.wikipedia.org/wiki/HTTP_cooki&quot; title=&quot;cookie&quot;&gt;cookie&lt;/a&gt; 和 &lt;a href=&quot;http://en.wikipedia.org/wiki/Session_(computer_science)&quot; title=&quot;session&quot;&gt;session&lt;/a&gt; 了。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Session_(computer_science)&quot; title=&quot;session&quot;&gt;session&lt;/a&gt; 在服务器端生成，通过 &lt;code&gt;Response Headers&lt;/code&gt; 的 &lt;code&gt;Set-Cookie&lt;/code&gt; 把 &lt;code&gt;sessionid&lt;/code&gt;返回给客户端，这个包含 &lt;code&gt;sessionid&lt;/code&gt; 的 &lt;a href=&quot;http://en.wikipedia.org/wiki/HTTP_cooki&quot; title=&quot;cookie&quot;&gt;cookie&lt;/a&gt; 通常是带有 &lt;strong&gt;&lt;code&gt;HttpOnly&lt;/code&gt;&lt;/strong&gt; 标识的，这个标识代表着这个 &lt;a href=&quot;http://en.wikipedia.org/wiki/HTTP_cooki&quot; title=&quot;cookie&quot;&gt;cookie&lt;/a&gt; 不能被客户端读写，也就是说我们不能通过脚本读取或者设置这个 &lt;a href=&quot;http://en.wikipedia.org/wiki/HTTP_cooki&quot; title=&quot;cookie&quot;&gt;cookie&lt;/a&gt;。这样用户成功登陆后，再发起请求的时候，都会在 &lt;code&gt;Request Headers&lt;/code&gt; 里携带这个带有 &lt;code&gt;sessionid&lt;/code&gt;
+的 &lt;a href=&quot;http://en.wikipedia.org/wiki/HTTP_cooki&quot; title=&quot;cookie&quot;&gt;cookie&lt;/a&gt; 发送到服务器端，服务器端对比发送过来的 &lt;code&gt;sessionid&lt;/code&gt;和服务器上保存的 &lt;a href=&quot;http://en.wikipedia.org/wiki/Session_(computer_science)&quot; title=&quot;session&quot;&gt;session&lt;/a&gt;， 就是识别对应的用户。&lt;/p&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;自动登陆最佳实践&lt;/h3&gt;
+
+&lt;p&gt;上面讲了利用 &lt;a href=&quot;http://en.wikipedia.org/wiki/HTTP_cooki&quot; title=&quot;cookie&quot;&gt;cookie&lt;/a&gt; 和 &lt;a href=&quot;http://en.wikipedia.org/wiki/Session_(computer_science)&quot; title=&quot;session&quot;&gt;session&lt;/a&gt; 来保存用户的登录状态，一般情况下含着&lt;code&gt;sessionid&lt;/code&gt; 的 &lt;a href=&quot;http://en.wikipedia.org/wiki/HTTP_cooki&quot; title=&quot;cookie&quot;&gt;cookie&lt;/a&gt; 是保存在内存里的，即 &lt;a href=&quot;http://en.wikipedia.org/wiki/HTTP_cooki&quot; title=&quot;cookie&quot;&gt;cookie&lt;/a&gt; 的 &lt;code&gt;expires&lt;/code&gt; 值小于0，随着浏览器的关闭，这个 &lt;a href=&quot;http://en.wikipedia.org/wiki/HTTP_cooki&quot; title=&quot;cookie&quot;&gt;cookie&lt;/a&gt; 就会被清空。当用户打开浏览器再次访问这个网站的时候，由于没有标识用户的 &lt;code&gt;sessionid&lt;/code&gt;，这时候就要再次重复以上登录过程。&lt;/p&gt;
+
+&lt;p&gt;网站为了用户体验，会设置一个记住我的选项，这个选项背后的工作就是自动登录，我们会利用 &lt;a href=&quot;http://en.wikipedia.org/wiki/HTTP_cooki&quot; title=&quot;cookie&quot;&gt;cookie&lt;/a&gt; 来实现。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;注意: 利用 &lt;a href=&quot;http://en.wikipedia.org/wiki/HTTP_cooki&quot; title=&quot;cookie&quot;&gt;cookie&lt;/a&gt; 来实现自动登录会增加网站的不完全因素。但是我们会通过多种方法来使这种不安全因素降到最少。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;section-1&quot;&gt;以下是实现自动登录的大概步骤：&lt;/h4&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;在数据库里增加一张表用来保存用户的登录信息，暂且叫他 &lt;code&gt;auto_login&lt;/code&gt; 表，这个表里有以下字段 &lt;code&gt;id&lt;/code&gt;， &lt;code&gt;user_id&lt;/code&gt;， &lt;code&gt;auto_login_hash&lt;/code&gt;， &lt;code&gt;create_time&lt;/code&gt;；&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;当用户勾选记住我并且成功登录我们的网站之后， 除了返回带有 &lt;code&gt;sessionid&lt;/code&gt; 的 &lt;a href=&quot;http://en.wikipedia.org/wiki/HTTP_cooki&quot; title=&quot;cookie&quot;&gt;cookie&lt;/a&gt; 之外， 还有 &lt;code&gt;auto_login_hash&lt;/code&gt; 和 &lt;code&gt;username&lt;/code&gt; 的 &lt;a href=&quot;http://en.wikipedia.org/wiki/HTTP_cooki&quot; title=&quot;cookie&quot;&gt;cookie&lt;/a&gt;， 这两个 &lt;a href=&quot;http://en.wikipedia.org/wiki/HTTP_cooki&quot; title=&quot;cookie&quot;&gt;cookie&lt;/a&gt; 是要被保存在硬盘里的， &lt;code&gt;expires&lt;/code&gt; 的值可能会被设置会一周或者两周，由开发者决定；&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;用户关闭浏览器之后再次访问我们的网站，我们检测如果 &lt;a href=&quot;http://en.wikipedia.org/wiki/HTTP_cooki&quot; title=&quot;cookie&quot;&gt;cookie&lt;/a&gt; 里存在 &lt;code&gt;auto_login_hash&lt;/code&gt; 和 &lt;code&gt;username&lt;/code&gt;，但是不存在 &lt;code&gt;sessionid&lt;/code&gt;，就发起一个 &lt;code&gt;Ajax&lt;/code&gt; 请求去登录；&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;后端程序根据传过来的 &lt;code&gt;auto_login_hash&lt;/code&gt; 和 &lt;code&gt;username&lt;/code&gt;检测到 &lt;code&gt;auto_login&lt;/code&gt; 表里有对应的记录，代表的这个用户可以登录.同时给这条记录的&lt;code&gt;auto_login_hash&lt;/code&gt;设置一个新的值， &lt;code&gt;create_time&lt;/code&gt;保持不变，再把新的 &lt;code&gt;auto_login_hash&lt;/code&gt; 和 &lt;code&gt;sessionid&lt;/code&gt; 通过&lt;code&gt;Response Headers&lt;/code&gt; 的 &lt;code&gt;Set-Cookie&lt;/code&gt; 返回给客户端就完成了一次自动登录的过程；&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;以上自动登录过程存在的风险就是 &lt;code&gt;auto_login_hash&lt;/code&gt; 可能会被攻击者捕获。
+攻击者可以利用这个 &lt;code&gt;auto_login_hash&lt;/code&gt; 去登录用户的账号，成功之后会有新的 &lt;code&gt;auto_login_hash&lt;/code&gt;生成并返回。
+这时如果真正的用户重新打开浏览器访问我们网站的时候，我们对比发送过来的 &lt;code&gt;auto_login_hash&lt;/code&gt;和数据库里的不一样，就判定用户账号有安全问题，清除这个用户的&lt;code&gt;auto_login_hash&lt;/code&gt;信息，让用户使用密码重新登录。
+但是攻击者任然可以利用捕获 &lt;code&gt;auto_login_hash&lt;/code&gt; 到用户再次访问我们网站的时间差。&lt;/p&gt;
+
+&lt;p&gt;为了加大&lt;a href=&quot;http://en.wikipedia.org/wiki/HTTP_cooki&quot; title=&quot;cookie&quot;&gt;cookie&lt;/a&gt; 被抓包泄露的难度， 提倡网站使用 &lt;a href=&quot;http://en.wikipedia.org/wiki/HTTP_Secure&quot; title=&quot;https&quot;&gt;https&lt;/a&gt;。同时在进行以下操作的时候，我们可以让用户再一次输入密码确认的设计来提高安全性。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;修改注册邮箱(特别是涉及到密码重置邮箱)&lt;/li&gt;
+  &lt;li&gt;修改密码&lt;/li&gt;
+  &lt;li&gt;涉及金钱的操作&lt;/li&gt;
+  &lt;li&gt;一些第三方应用获取权限&lt;/li&gt;
+  &lt;li&gt;…….&lt;/li&gt;
+&lt;/ul&gt;
+
+
+  &lt;p&gt;&lt;a href=&quot;http://localhost:4000/about-autologin/&quot;&gt;自动登陆那点事&lt;/a&gt; was originally published by Kimi at &lt;a href=&quot;http://localhost:4000&quot;&gt;T 馆&lt;/a&gt; on November 24, 2014.&lt;/p&gt;</content>
+</entry>
+
+
+<entry>
   <title type="html"><![CDATA[当我在跑步时我在想些什么？]]></title>
- <link rel="alternate" type="text/html" href="/running-with-thinking/" />
-  <id>/running-with-thinking</id>
+ <link rel="alternate" type="text/html" href="http://localhost:4000/running-with-thinking/" />
+  <id>http://localhost:4000/running-with-thinking</id>
   <updated>2014-11-21T00:00:00-00:00</updated>
   <published>2014-08-24T00:00:00+08:00</published>
   
   <author>
     <name>Kimi</name>
-    <uri></uri>
+    <uri>http://localhost:4000</uri>
     <email></email>
   </author>
   <content type="html">&lt;h3 id=&quot;section&quot;&gt;关于跑步&lt;/h3&gt;
@@ -40,20 +114,20 @@
 &lt;/ul&gt;
 
 
-  &lt;p&gt;&lt;a href=&quot;/running-with-thinking/&quot;&gt;当我在跑步时我在想些什么？&lt;/a&gt; was originally published by Kimi at &lt;a href=&quot;&quot;&gt;T 馆&lt;/a&gt; on August 24, 2014.&lt;/p&gt;</content>
+  &lt;p&gt;&lt;a href=&quot;http://localhost:4000/running-with-thinking/&quot;&gt;当我在跑步时我在想些什么？&lt;/a&gt; was originally published by Kimi at &lt;a href=&quot;http://localhost:4000&quot;&gt;T 馆&lt;/a&gt; on August 24, 2014.&lt;/p&gt;</content>
 </entry>
 
 
 <entry>
   <title type="html"><![CDATA[最近的生活]]></title>
- <link rel="alternate" type="text/html" href="/firstblog/" />
-  <id>/firstblog</id>
+ <link rel="alternate" type="text/html" href="http://localhost:4000/firstblog/" />
+  <id>http://localhost:4000/firstblog</id>
   <updated>2014-11-21T00:00:00-00:00</updated>
   <published>2014-06-15T00:00:00+08:00</published>
   
   <author>
     <name>Kimi</name>
-    <uri></uri>
+    <uri>http://localhost:4000</uri>
     <email></email>
   </author>
   <content type="html">&lt;h3 id=&quot;section&quot;&gt;关于本站&lt;/h3&gt;
@@ -80,7 +154,7 @@
 &lt;/ul&gt;
 
 
-  &lt;p&gt;&lt;a href=&quot;/firstblog/&quot;&gt;最近的生活&lt;/a&gt; was originally published by Kimi at &lt;a href=&quot;&quot;&gt;T 馆&lt;/a&gt; on June 15, 2014.&lt;/p&gt;</content>
+  &lt;p&gt;&lt;a href=&quot;http://localhost:4000/firstblog/&quot;&gt;最近的生活&lt;/a&gt; was originally published by Kimi at &lt;a href=&quot;http://localhost:4000&quot;&gt;T 馆&lt;/a&gt; on June 15, 2014.&lt;/p&gt;</content>
 </entry>
 
 </feed>

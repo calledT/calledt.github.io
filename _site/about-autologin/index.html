@@ -1,0 +1,323 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>自动登陆那点事 &#8211; T 馆</title>
+<meta name="description" content="也说说自动登陆的实现及存在问题">
+<meta name="keywords" content="登陆, 安全, cookie">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自动登陆那点事">
+<meta property="og:description" content="也说说自动登陆的实现及存在问题">
+<meta property="og:url" content="http://localhost:4000/about-autologin/">
+<meta property="og:site_name" content="T 馆">
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/about-autologin/">
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="T 馆 Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- Load Modernizr -->
+<script src="http://localhost:4000/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://localhost:4000/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://localhost:4000/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://localhost:4000/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:4000/images/apple-touch-icon-144x144-precomposed.png">
+
+
+
+</head>
+
+<body id="post" class="feature">
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://browsehappy.com/">亲，你的浏览器似乎过时啦!</strong> 去挑一个炫酷炸叼天的试试吧！</a></div><![endif]-->
+
+<nav id="dl-menu" class="dl-menuwrapper" role="navigation">
+  <button class="dl-trigger">Open Menu</button>
+  <ul class="dl-menu">
+    <li><a href="http://localhost:4000">首页</a></li>
+    <li>
+      <a href="#">关于我</a>
+      <ul class="dl-submenu">
+        <li>
+          <img src="http://localhost:4000/images/avator-gray.jpg" alt="Kimi photo" class="author-photo">
+          <h4>Kimi</h4>
+          <p>一Cl 一Editor 一世界</p>
+        </li>
+        <li><a href="http://localhost:4000/about/">Learn More</a></li>
+        
+          <li><a href="https://github.com/calledT"><i class="iconfont icon-github"></i> github</a></li>
+        
+          <li><a href="http://weibo.com/huanggengtao"><i class="iconfont icon-weibo"></i> weibo</a></li>
+        
+          <li><a href="https://twiter.com/huanggengtao"><i class="iconfont icon-twitter"></i> twitter</a></li>
+        
+          <li><a href="https://fackbook.com/huanggengtao"><i class="iconfont icon-facebook"></i> facebook</a></li>
+        
+      </ul>
+    </li>
+    <li>
+      <a href="#">文章</a>
+      <ul class="dl-submenu">
+        <li><a href="http://localhost:4000/posts/">所有文章</a></li>
+        <li><a href="http://localhost:4000/tags/">所有标签</a></li>
+      </ul>
+    </li>
+    
+      
+          
+          
+      <li><a href="http://gzjcw.gzzyzz.com" target="_blank">广州建材网</a></li>
+    
+  </ul><!-- /.dl-menu -->
+</nav><!-- /.dl-menuwrapper -->
+
+
+
+<div class="entry-header">
+  
+    <div class="image-credit">Image source: 
+      <a href="http://www.dargadgetz.com/ios-7-abstract-wallpaper-pack-for-iphone-5-and-ipod-touch-retina/">dargadgetz</a>
+    </div><!-- /.image-credit -->
+  
+  <div class="entry-image">
+    <img src="http://localhost:4000/images/abstract-5.jpg" alt="自动登陆那点事">
+  </div><!-- /.entry-image -->
+</div><!-- /.entry-header -->
+
+
+<div id="main" role="main">
+  <article class="hentry">
+    <header class="header-title">
+      <div class="header-title-wrap">
+        
+          <h1 class="entry-title">
+            <a href="http://localhost:4000/about-autologin/" rel="bookmark" title="自动登陆那点事">自动登陆那点事</a>
+          </h1>
+        
+        <h2>2014-11-24</h2>
+        
+      </div><!-- /.header-title-wrap -->
+    </header>
+    <div class="entry-content">
+      <h3 id="cookie--session">cookie 和 session</h3>
+
+<p><a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol" title="http">http</a>是无状态的，无状态是怎么样一种情况呢？可以简单解释一下：</p>
+
+<blockquote>
+  <p>比如用户张三依次发起两次请求，仅通过 <a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol" title="http">http</a>
+是无法知道第一次请求和第二次请求是由同一个用户张三发起的。
+<!-- more --></p>
+</blockquote>
+
+<p>所以无法仅通过 <a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol" title="http">http</a> 来识别用户，我们就要寻找另外途径，这就需要用到 <a href="http://en.wikipedia.org/wiki/HTTP_cooki" title="cookie">cookie</a> 和 <a href="http://en.wikipedia.org/wiki/Session_(computer_science)" title="session">session</a> 了。</p>
+
+<p><a href="http://en.wikipedia.org/wiki/Session_(computer_science)" title="session">session</a> 在服务器端生成，通过 <code>Response Headers</code> 的 <code>Set-Cookie</code> 把 <code>sessionid</code>返回给客户端，这个包含 <code>sessionid</code> 的 <a href="http://en.wikipedia.org/wiki/HTTP_cooki" title="cookie">cookie</a> 通常是带有 <strong><code>HttpOnly</code></strong> 标识的，这个标识代表着这个 <a href="http://en.wikipedia.org/wiki/HTTP_cooki" title="cookie">cookie</a> 不能被客户端读写，也就是说我们不能通过脚本读取或者设置这个 <a href="http://en.wikipedia.org/wiki/HTTP_cooki" title="cookie">cookie</a>。这样用户成功登陆后，再发起请求的时候，都会在 <code>Request Headers</code> 里携带这个带有 <code>sessionid</code>
+的 <a href="http://en.wikipedia.org/wiki/HTTP_cooki" title="cookie">cookie</a> 发送到服务器端，服务器端对比发送过来的 <code>sessionid</code>和服务器上保存的 <a href="http://en.wikipedia.org/wiki/Session_(computer_science)" title="session">session</a>， 就是识别对应的用户。</p>
+
+<h3 id="section">自动登陆最佳实践</h3>
+
+<p>上面讲了利用 <a href="http://en.wikipedia.org/wiki/HTTP_cooki" title="cookie">cookie</a> 和 <a href="http://en.wikipedia.org/wiki/Session_(computer_science)" title="session">session</a> 来保存用户的登录状态，一般情况下含着<code>sessionid</code> 的 <a href="http://en.wikipedia.org/wiki/HTTP_cooki" title="cookie">cookie</a> 是保存在内存里的，即 <a href="http://en.wikipedia.org/wiki/HTTP_cooki" title="cookie">cookie</a> 的 <code>expires</code> 值小于0，随着浏览器的关闭，这个 <a href="http://en.wikipedia.org/wiki/HTTP_cooki" title="cookie">cookie</a> 就会被清空。当用户打开浏览器再次访问这个网站的时候，由于没有标识用户的 <code>sessionid</code>，这时候就要再次重复以上登录过程。</p>
+
+<p>网站为了用户体验，会设置一个记住我的选项，这个选项背后的工作就是自动登录，我们会利用 <a href="http://en.wikipedia.org/wiki/HTTP_cooki" title="cookie">cookie</a> 来实现。</p>
+
+<blockquote>
+  <p>注意: 利用 <a href="http://en.wikipedia.org/wiki/HTTP_cooki" title="cookie">cookie</a> 来实现自动登录会增加网站的不完全因素。但是我们会通过多种方法来使这种不安全因素降到最少。</p>
+</blockquote>
+
+<h4 id="section-1">以下是实现自动登录的大概步骤：</h4>
+
+<ol>
+  <li>
+    <p>在数据库里增加一张表用来保存用户的登录信息，暂且叫他 <code>auto_login</code> 表，这个表里有以下字段 <code>id</code>， <code>user_id</code>， <code>auto_login_hash</code>， <code>create_time</code>；</p>
+  </li>
+  <li>
+    <p>当用户勾选记住我并且成功登录我们的网站之后， 除了返回带有 <code>sessionid</code> 的 <a href="http://en.wikipedia.org/wiki/HTTP_cooki" title="cookie">cookie</a> 之外， 还有 <code>auto_login_hash</code> 和 <code>username</code> 的 <a href="http://en.wikipedia.org/wiki/HTTP_cooki" title="cookie">cookie</a>， 这两个 <a href="http://en.wikipedia.org/wiki/HTTP_cooki" title="cookie">cookie</a> 是要被保存在硬盘里的， <code>expires</code> 的值可能会被设置会一周或者两周，由开发者决定；</p>
+  </li>
+  <li>
+    <p>用户关闭浏览器之后再次访问我们的网站，我们检测如果 <a href="http://en.wikipedia.org/wiki/HTTP_cooki" title="cookie">cookie</a> 里存在 <code>auto_login_hash</code> 和 <code>username</code>，但是不存在 <code>sessionid</code>，就发起一个 <code>Ajax</code> 请求去登录；</p>
+  </li>
+  <li>
+    <p>后端程序根据传过来的 <code>auto_login_hash</code> 和 <code>username</code>检测到 <code>auto_login</code> 表里有对应的记录，代表的这个用户可以登录.同时给这条记录的<code>auto_login_hash</code>设置一个新的值， <code>create_time</code>保持不变，再把新的 <code>auto_login_hash</code> 和 <code>sessionid</code> 通过<code>Response Headers</code> 的 <code>Set-Cookie</code> 返回给客户端就完成了一次自动登录的过程；</p>
+  </li>
+</ol>
+
+<p>以上自动登录过程存在的风险就是 <code>auto_login_hash</code> 可能会被攻击者捕获。
+攻击者可以利用这个 <code>auto_login_hash</code> 去登录用户的账号，成功之后会有新的 <code>auto_login_hash</code>生成并返回。
+这时如果真正的用户重新打开浏览器访问我们网站的时候，我们对比发送过来的 <code>auto_login_hash</code>和数据库里的不一样，就判定用户账号有安全问题，清除这个用户的<code>auto_login_hash</code>信息，让用户使用密码重新登录。
+但是攻击者任然可以利用捕获 <code>auto_login_hash</code> 到用户再次访问我们网站的时间差。</p>
+
+<p>为了加大<a href="http://en.wikipedia.org/wiki/HTTP_cooki" title="cookie">cookie</a> 被抓包泄露的难度， 提倡网站使用 <a href="http://en.wikipedia.org/wiki/HTTP_Secure" title="https">https</a>。同时在进行以下操作的时候，我们可以让用户再一次输入密码确认的设计来提高安全性。</p>
+
+<ul>
+  <li>修改注册邮箱(特别是涉及到密码重置邮箱)</li>
+  <li>修改密码</li>
+  <li>涉及金钱的操作</li>
+  <li>一些第三方应用获取权限</li>
+  <li>…….</li>
+</ul>
+
+
+      <footer class="entry-meta">
+        <span class="entry-tags">
+          
+            <a href="http://localhost:4000/tags/#登陆" title="Pages tagged 登陆" class="tag">登陆</a>
+          
+            <a href="http://localhost:4000/tags/#安全" title="Pages tagged 安全" class="tag">安全</a>
+          
+            <a href="http://localhost:4000/tags/#cookie" title="Pages tagged cookie" class="tag">cookie</a>
+          
+        </span>
+        <span>
+          <a href="http://localhost:4000/about-autologin/" rel="bookmark" title="自动登陆那点事">自动登陆那点事</a> was published on
+          <span class="entry-date date published updated">
+            <time datetime="2014-11-24T00:00:00+08:00">November 24, 2014</time>
+          </span>
+        </span>
+        
+          (revised: <span class="entry-date date modified">
+            <time datetime="2014-11-24">11/24/2014</time>
+          </span>)
+        
+        <span class="author vcard">
+          <span class="fn">
+            <a href="http://localhost:4000/about/" title="About Kimi">Kimi</a>
+          </span>
+        </span>
+        <div class="social-share">
+  <ul class="socialcount socialcount-small inline-list">
+    <li>
+      <a class="jiathis_button_tsina" title="分享到新浪微博"><i class="iconfont icon-weibo-square"></i></a>
+    </li>
+    <li>
+      <a class="jiathis_button_weixin" title="分享到微信"><i class="iconfont icon-weixin-square"></i></a>
+    </li>
+    <li>
+      <a class="jiathis_button_renren" title="分享到人人网"><i class="iconfont icon-renren-square"></i></a>
+    </li>
+    <li>
+      <a class="jiathis_button_qzone" title="分享QQ空间"><i class="iconfont icon-qzone-square"></i></a>
+    </li>
+    <li>
+      <a class="jiathis_button_douban" title="分享到豆瓣网"><i class="iconfont icon-douban-square"></i></a>
+    </li>
+  </ul>
+</div>
+
+
+      </footer>
+    </div><!-- /.entry-content -->
+
+    
+      
+      <div class="ds-thread"></div>
+      
+    
+
+    <div class="read-more">
+  
+    <div class="read-more-header">
+      <a href="http://localhost:4000/running-with-thinking/" class="read-more-btn">更多内容</a>
+    </div><!-- /.read-more-header -->
+    <div class="read-more-content">
+      <h3><a href="http://localhost:4000/running-with-thinking/" title="当我在跑步时我在想些什么？">当我在跑步时我在想些什么？</a></h3>
+      <p>当我跑步时没人陪我，不能谈些什么，只能想些什么。 <a href="http://localhost:4000/running-with-thinking/">Continue reading</a></p>
+    </div><!-- /.read-more-content -->
+  
+  <div class="read-more-list">
+    
+      <div class="list-item">
+        <h4><a href="http://localhost:4000/firstblog/" title="最近的生活">最近的生活</a></h4>
+        <span>Published on June 15, 2014</span>
+      </div><!-- /.list-item -->
+    
+  </div><!-- /.read-more-list -->
+</div><!-- /.read-more -->
+
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo">
+    <span>
+  &copy; 2014 Kimi.
+  Powered by <a href="http://jekyllrb.com">Jekyll</a>
+  post by <a href="http://calledt.com">Kimi</a>.
+</span>
+
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script src="//libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://localhost:4000/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://localhost:4000/assets/js/scripts.min.js"></script>
+
+
+
+<!-- jiathis 分享 -->
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+
+
+
+
+<!-- 百度统计异步代码 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?f85720f7b69b6aa1f1dbfcaeea5ae412";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name: 'calledt'};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';
+    ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+
+
+
+
+</body>
+</html>
