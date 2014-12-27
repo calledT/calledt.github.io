@@ -1,6 +1,6 @@
 # exclude file
 *.sublime-project
-*.sublime-worksapce
+*.sublime-workspace
 
 # exclude folder
 .sass-cache/
