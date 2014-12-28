@@ -4,3 +4,4 @@
 
 # exclude folder
 .sass-cache/
+node_modules/
