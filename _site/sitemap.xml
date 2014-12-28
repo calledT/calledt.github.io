@@ -1,47 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://localhost:4000/about-autologin/</loc>
+    <loc>/front-end-automation-browsersync-livereload/</loc>
+    <lastmod>2014-12-27T00:00:00+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>/about-autologin/</loc>
     <lastmod>2014-11-24T00:00:00+08:00</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/running-with-thinking/</loc>
+    <loc>/running-with-thinking/</loc>
     <lastmod>2014-08-24T00:00:00+08:00</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/firstblog/</loc>
+    <loc>/firstblog/</loc>
     <lastmod>2014-06-15T00:00:00+08:00</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/404.html</loc>
-    <lastmod>2014-11-24T16:27:57+08:00</lastmod>
+    <loc>/404.html</loc>
+    <lastmod>2014-12-28T11:25:17+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/posts/</loc>
-    <lastmod>2014-11-24T16:27:57+08:00</lastmod>
+    <loc>/posts/</loc>
+    <lastmod>2014-12-28T11:25:17+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/tags/</loc>
-    <lastmod>2014-11-24T16:27:57+08:00</lastmod>
+    <loc>/tags/</loc>
+    <lastmod>2014-12-28T11:25:17+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/</loc>
-    <lastmod>2014-11-24T16:27:57+08:00</lastmod>
+    <loc>/</loc>
+    <lastmod>2014-12-28T11:25:17+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/about/</loc>
-    <lastmod>2014-11-24T16:27:57+08:00</lastmod>
+    <loc>/about/</loc>
+    <lastmod>2014-12-28T11:25:17+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

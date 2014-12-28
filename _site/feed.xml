@@ -2,27 +2,129 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
 <title type="text">T 馆</title>
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
-<link rel="self" type="application/atom+xml" href="http://localhost:4000/feed.xml" />
-<link rel="alternate" type="text/html" href="http://localhost:4000" />
-<updated>2014-11-24T16:27:57+08:00</updated>
-<id>http://localhost:4000/</id>
+<link rel="self" type="application/atom+xml" href="/feed.xml" />
+<link rel="alternate" type="text/html" href="" />
+<updated>2014-12-28T11:25:17+08:00</updated>
+<id>/</id>
 <author>
   <name>Kimi</name>
-  <uri>http://localhost:4000/</uri>
+  <uri>/</uri>
   <email></email>
 </author>
 
 
 <entry>
+  <title type="html"><![CDATA[前端自动化工程之浏览器同步更新]]></title>
+ <link rel="alternate" type="text/html" href="/front-end-automation-browsersync-livereload/" />
+  <id>/front-end-automation-browsersync-livereload</id>
+  <updated>2014-12-28T00:00:00-00:00</updated>
+  <published>2014-12-27T00:00:00+08:00</published>
+  
+  <author>
+    <name>Kimi</name>
+    <uri></uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;h2 id=&quot;livereload&quot;&gt;livereload&lt;/h2&gt;
+
+&lt;h3 id=&quot;sublime-text-plugin--chrome-extends&quot;&gt;sublime text plugin &amp;amp; chrome extends&lt;/h3&gt;
+
+&lt;p&gt;刚接触 &lt;a href=&quot;sublime-text&quot;&gt;sublime text&lt;/a&gt;的时候,非常热衷于折腾插件,当时有一款 &lt;a href=&quot;livereload&quot;&gt;livereload&lt;/a&gt;的&lt;a href=&quot;https://sublime.wbond.net/packages/LiveReload&quot;&gt;sublime插件&lt;/a&gt;,配合浏览器安装的&lt;a href=&quot;https://chrome.google.com/extensions/detail/jnihajbhpnppcggbcgedagnkighmdlei&quot;&gt;livereload扩展&lt;/a&gt;,安装完在扩展程序界面允许这个扩展访问文件网址,就可以通过 &lt;code&gt;file://&lt;/code&gt;文件的形式或者以&lt;code&gt;server&lt;/code&gt;的形式同步查看页面源文件修改之后在浏览器的效果,不用去手动刷新.这样的方式对于写简单的页面非常有用,你可以省却手动启动一个&lt;code&gt;server&lt;/code&gt;的步骤,因为&lt;a href=&quot;livereload&quot;&gt;livereload&lt;/a&gt;的&lt;a href=&quot;https://sublime.wbond.net/packages/LiveReload&quot;&gt;sublime插件&lt;/a&gt;已经做了这件事.对于有超宽屏或者双显示器的页面重构人员,这相当令人激动的.
+&lt;!-- more --&gt;&lt;/p&gt;
+
+&lt;p&gt;为了写这篇文章,特意再去体验一把,因为我现在用的是&lt;code&gt;sublime text 3&lt;/code&gt;,以前那个插件是给&lt;code&gt;sublime text 2&lt;/code&gt;用的,发现现在有一个&lt;a href=&quot;https://github.com/dz0ny/LiveReload-sublimetext2/tree/devel&quot;&gt;devel version&lt;/a&gt;,说是给&lt;code&gt;sublime text 3&lt;/code&gt;的,但我装上,建了一个测试页面,点击浏览器上的 &lt;a href=&quot;https://chrome.google.com/extensions/detail/jnihajbhpnppcggbcgedagnkighmdlei&quot;&gt;livereload扩展&lt;/a&gt;按钮,却提示&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Could not connect to LiveReload server. Please make sure that LiveReload 2.3 (or later) or another compatible server is running.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;一开始以为是浏览器插件的问题,上网搜也没找到多少有用信息,只是看到这个浏览器插件评论页有不少人也在抱怨这个问题.到这里都会认为真的是这个扩展在新版浏览器中的问题了.但是强迫症的我还是把&lt;code&gt;sublime text 2&lt;/code&gt;装上,验证到底是不是浏览器插件的问题.&lt;/p&gt;
+
+&lt;p&gt;最后的结论: &lt;strong&gt;不是 livereload 浏览器扩展的问题&lt;/strong&gt;,是&lt;code&gt;sublime text 3&lt;/code&gt;插件的问题.&lt;/p&gt;
+
+&lt;h3 id=&quot;grunt-contrib-watch&quot;&gt;grunt-contrib-watch&lt;/h3&gt;
+
+&lt;p&gt;我在接触了&lt;a href=&quot;grunt&quot;&gt;grunt&lt;/a&gt;之后,就放弃了上面那种使用方式.因为我会配置一套工作流来协助开发,&lt;a href=&quot;livereload&quot;&gt;livereload&lt;/a&gt;会是工作流中的一个&lt;code&gt;task&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;以前有一个叫&lt;a href=&quot;https://github.com/gruntjs/grunt-contrib-livereload&quot;&gt;grunt-contrib-livereload&lt;/a&gt;的plugin,不过现在已经合并到&lt;a href=&quot;https://github.com/gruntjs/grunt-contrib-watch#optionslivereload&quot;&gt;grunt-contrib-watch&lt;/a&gt;中去了.关于怎样配置任务可以去看&lt;a href=&quot;https://github.com/gruntjs/grunt-contrib-watch/blob/master/docs/watch-examples.md#enabling-live-reload-in-your-html&quot;&gt;enabling-live-reload-in-your-html&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;这种方式的相比上面那种方式的优点是配合&lt;a href=&quot;grunt&quot;&gt;grunt&lt;/a&gt;的&lt;code&gt;task&lt;/code&gt;,监控更改的文件类型更多了,毕竟现在好多开发者在使用&lt;a href=&quot;sass&quot;&gt;sass&lt;/a&gt;,&lt;a href=&quot;less&quot;&gt;less&lt;/a&gt;, &lt;a href=&quot;coffeescript&quot;&gt;coffeescript&lt;/a&gt;这些预处理语言或者各式各样的模板引擎.&lt;/p&gt;
+
+&lt;p&gt;但这种方式我们还是需要安装浏览器插件或者在页面里嵌入类似下面的&lt;code&gt;livereload脚本&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;//localhost:35729/livereload.js&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/script&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;嵌入脚本的话上线的时候还得移除它,当然有工具可以在上线的时候处理掉这段脚本.但是这样终究显得有些不够全自动,呵呵.&lt;/p&gt;
+
+&lt;h2 id=&quot;browsersync&quot;&gt;browsersync&lt;/h2&gt;
+
+&lt;p&gt;在工具的选择上我算是一个比较喜新厌旧的人了.所以用过&lt;a href=&quot;gulp&quot;&gt;gulp&lt;/a&gt;之后,我就不再写&lt;a href=&quot;grunt&quot;&gt;grunt&lt;/a&gt;了.&lt;a href=&quot;gulp&quot;&gt;gulp&lt;/a&gt;写起任务来比&lt;a href=&quot;grunt&quot;&gt;grunt&lt;/a&gt;优雅多了,而且现在&lt;a href=&quot;gulp&quot;&gt;gulp&lt;/a&gt;社区的繁荣,相比年初的时候,可以毫不犹豫的切换过来.&lt;/p&gt;
+
+&lt;p&gt;好了,吐槽完毕,进入正题,接下来要介绍的工具叫&lt;a href=&quot;browsersync&quot;&gt;browsersync&lt;/a&gt;,会用&lt;code&gt;gulpfile&lt;/code&gt;来做示例, 但它是不依赖于&lt;a href=&quot;gulp&quot;&gt;gulp&lt;/a&gt;或者&lt;a href=&quot;grunt&quot;&gt;grunt&lt;/a&gt;的.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;browsersync&quot;&gt;browsersync&lt;/a&gt;是一款多端同步刷新页面内容的工具,这能大大节省开发测试的时间.比如你在 &lt;code&gt;chrome&lt;/code&gt; 和 &lt;code&gt;IE&lt;/code&gt;中打开同一个被 &lt;a href=&quot;browsersync&quot;&gt;browsersync&lt;/a&gt; 监控的 URL, 在 &lt;code&gt;chrome&lt;/code&gt; 页面表单中输入的内容会被同步到 &lt;code&gt;IE&lt;/code&gt;浏览器中,用户操作也是能同步的,很酷是吧.当然啦,像&lt;a href=&quot;livereload&quot;&gt;livereload&lt;/a&gt;的修改源文件刷新浏览器页面的功能也是有的.多端同步在开发响应式网站的时候相当有用,想想你电脑上有好几个浏览器,而且还手机端,pad端 上的浏览器,一个个打开去测多浪费时间呀.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;browsersync&quot;&gt;browsersync&lt;/a&gt;通过启用一个&lt;code&gt;server&lt;/code&gt;的方式,通过访问这个&lt;code&gt;server&lt;/code&gt;的地址,就可以不用手动在页面上插入脚本或者去安装浏览器扩展了.有人可能会有疑惑,我已经有自己的&lt;code&gt;server&lt;/code&gt;了,例如&lt;code&gt;tomcat&lt;/code&gt;,那怎么办?别急,可以,把&lt;a href=&quot;browsersync&quot;&gt;browsersync&lt;/a&gt;的&lt;code&gt;server&lt;/code&gt;设置成代理的&lt;code&gt;server&lt;/code&gt;,这样访问&lt;a href=&quot;browsersync&quot;&gt;browsersync&lt;/a&gt;的&lt;code&gt;server&lt;/code&gt;的时候,会把所有请求都转发到你自己的&lt;code&gt;server&lt;/code&gt;上,棒!下面来看看我的配置吧!&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// autoprefixer 浏览器支持版本&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;browsersSupport&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;&amp;gt; 5%&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;last 2 versions&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Firefox &amp;lt; 20&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+
+&lt;span class=&quot;cm&quot;&gt;/**&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt; * 浏览器同步查看修改&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt; * http://www.browsersync.io/docs/gulp/&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt; */&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;browser-sync&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;browserSync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+    &lt;span class=&quot;cm&quot;&gt;/**&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;     * 二选一&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;     * 或者使用代理，或者启用一个静态资源服务&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;     */&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;proxy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;localhost:8080&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// server: {baseDir: &amp;quot;./static&amp;quot;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;cm&quot;&gt;/**&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt; * 编译sass&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt; * https://github.com/dlmanning/gulp-sass&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt; * https://github.com/sindresorhus/gulp-autoprefixer&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt; * https://github.com/floridoo/gulp-sourcemaps&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt; */&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;sass&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;scss&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sourcemaps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;errLogToConsole&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;outputStyle&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;nested&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}))&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sourcemaps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;includeContent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}))&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 可以通过下面的链接去了解为什么要加上这两句&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sourcemaps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;loadMaps&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}))&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// https://github.com/floridoo/gulp-sourcemaps/issues/60&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;autoprefixer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;browsers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;browsersSupport&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cascade&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}))&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sourcemaps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;./maps&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;css&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;filter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;**/*.css&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;browserSync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;reload&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;stream&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}));&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+
+&lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;watchsass&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;sass&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;browser-sync&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;watch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;scss&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;sass&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;更多的配置,可以通过&lt;a href=&quot;browsersync&quot;&gt;browsersync&lt;/a&gt;官网去了解,配置很简单,却是十分的实用,感谢作者开源这样的工具.&lt;/p&gt;
+
+
+  &lt;p&gt;&lt;a href=&quot;/front-end-automation-browsersync-livereload/&quot;&gt;前端自动化工程之浏览器同步更新&lt;/a&gt; was originally published by Kimi at &lt;a href=&quot;&quot;&gt;T 馆&lt;/a&gt; on December 27, 2014.&lt;/p&gt;</content>
+</entry>
+
+
+<entry>
   <title type="html"><![CDATA[自动登陆那点事]]></title>
- <link rel="alternate" type="text/html" href="http://localhost:4000/about-autologin/" />
-  <id>http://localhost:4000/about-autologin</id>
+ <link rel="alternate" type="text/html" href="/about-autologin/" />
+  <id>/about-autologin</id>
   <updated>2014-11-24T00:00:00-00:00</updated>
   <published>2014-11-24T00:00:00+08:00</published>
   
   <author>
     <name>Kimi</name>
-    <uri>http://localhost:4000</uri>
+    <uri></uri>
     <email></email>
   </author>
   <content type="html">&lt;h3 id=&quot;cookie--session&quot;&gt;cookie 和 session&lt;/h3&gt;
@@ -83,20 +185,20 @@
 &lt;/ul&gt;
 
 
-  &lt;p&gt;&lt;a href=&quot;http://localhost:4000/about-autologin/&quot;&gt;自动登陆那点事&lt;/a&gt; was originally published by Kimi at &lt;a href=&quot;http://localhost:4000&quot;&gt;T 馆&lt;/a&gt; on November 24, 2014.&lt;/p&gt;</content>
+  &lt;p&gt;&lt;a href=&quot;/about-autologin/&quot;&gt;自动登陆那点事&lt;/a&gt; was originally published by Kimi at &lt;a href=&quot;&quot;&gt;T 馆&lt;/a&gt; on November 24, 2014.&lt;/p&gt;</content>
 </entry>
 
 
 <entry>
   <title type="html"><![CDATA[当我在跑步时我在想些什么？]]></title>
- <link rel="alternate" type="text/html" href="http://localhost:4000/running-with-thinking/" />
-  <id>http://localhost:4000/running-with-thinking</id>
+ <link rel="alternate" type="text/html" href="/running-with-thinking/" />
+  <id>/running-with-thinking</id>
   <updated>2014-11-21T00:00:00-00:00</updated>
   <published>2014-08-24T00:00:00+08:00</published>
   
   <author>
     <name>Kimi</name>
-    <uri>http://localhost:4000</uri>
+    <uri></uri>
     <email></email>
   </author>
   <content type="html">&lt;h3 id=&quot;section&quot;&gt;关于跑步&lt;/h3&gt;
@@ -114,20 +216,20 @@
 &lt;/ul&gt;
 
 
-  &lt;p&gt;&lt;a href=&quot;http://localhost:4000/running-with-thinking/&quot;&gt;当我在跑步时我在想些什么？&lt;/a&gt; was originally published by Kimi at &lt;a href=&quot;http://localhost:4000&quot;&gt;T 馆&lt;/a&gt; on August 24, 2014.&lt;/p&gt;</content>
+  &lt;p&gt;&lt;a href=&quot;/running-with-thinking/&quot;&gt;当我在跑步时我在想些什么？&lt;/a&gt; was originally published by Kimi at &lt;a href=&quot;&quot;&gt;T 馆&lt;/a&gt; on August 24, 2014.&lt;/p&gt;</content>
 </entry>
 
 
 <entry>
   <title type="html"><![CDATA[最近的生活]]></title>
- <link rel="alternate" type="text/html" href="http://localhost:4000/firstblog/" />
-  <id>http://localhost:4000/firstblog</id>
+ <link rel="alternate" type="text/html" href="/firstblog/" />
+  <id>/firstblog</id>
   <updated>2014-11-21T00:00:00-00:00</updated>
   <published>2014-06-15T00:00:00+08:00</published>
   
   <author>
     <name>Kimi</name>
-    <uri>http://localhost:4000</uri>
+    <uri></uri>
     <email></email>
   </author>
   <content type="html">&lt;h3 id=&quot;section&quot;&gt;关于本站&lt;/h3&gt;
@@ -154,7 +256,7 @@
 &lt;/ul&gt;
 
 
-  &lt;p&gt;&lt;a href=&quot;http://localhost:4000/firstblog/&quot;&gt;最近的生活&lt;/a&gt; was originally published by Kimi at &lt;a href=&quot;http://localhost:4000&quot;&gt;T 馆&lt;/a&gt; on June 15, 2014.&lt;/p&gt;</content>
+  &lt;p&gt;&lt;a href=&quot;/firstblog/&quot;&gt;最近的生活&lt;/a&gt; was originally published by Kimi at &lt;a href=&quot;&quot;&gt;T 馆&lt;/a&gt; on June 15, 2014.&lt;/p&gt;</content>
 </entry>
 
 </feed>
