@@ -1,0 +1,343 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>SublimeLinter实践 &#8211; T 馆</title>
+<meta name="description" content="sublimelinter在工程中的实际应用">
+<meta name="keywords" content="sublime text, lint">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SublimeLinter实践">
+<meta property="og:description" content="sublimelinter在工程中的实际应用">
+<meta property="og:url" content="/sublimelinter-in-action/">
+<meta property="og:site_name" content="T 馆">
+
+
+
+
+
+<link rel="canonical" href="/sublimelinter-in-action/">
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="T 馆 Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- Load Modernizr -->
+<script src="/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/apple-touch-icon-144x144-precomposed.png">
+
+
+
+</head>
+
+<body id="post" class="feature">
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://browsehappy.com/">亲，你的浏览器似乎过时啦!</strong> 去挑一个炫酷炸叼天的试试吧！</a></div><![endif]-->
+
+<nav id="dl-menu" class="dl-menuwrapper" role="navigation">
+  <button class="dl-trigger">Open Menu</button>
+  <ul class="dl-menu">
+    <li><a href="">首页</a></li>
+    <li>
+      <a href="#">关于我</a>
+      <ul class="dl-submenu">
+        <li>
+          <img src="/images/avator-gray.jpg" alt="Kimi photo" class="author-photo">
+          <h4>Kimi</h4>
+          <p>一Cl 一Editor 一世界</p>
+        </li>
+        <li><a href="/about/">Learn More</a></li>
+        
+          <li><a href="https://github.com/calledT"><i class="iconfont icon-github"></i> github</a></li>
+        
+          <li><a href="http://weibo.com/huanggengtao"><i class="iconfont icon-weibo"></i> weibo</a></li>
+        
+          <li><a href="https://twiter.com/huanggengtao"><i class="iconfont icon-twitter"></i> twitter</a></li>
+        
+          <li><a href="https://fackbook.com/huanggengtao"><i class="iconfont icon-facebook"></i> facebook</a></li>
+        
+      </ul>
+    </li>
+    <li>
+      <a href="#">文章</a>
+      <ul class="dl-submenu">
+        <li><a href="/posts/">所有文章</a></li>
+        <li><a href="/tags/">所有标签</a></li>
+      </ul>
+    </li>
+    
+      
+          
+          
+      <li><a href="http://www.html-js.com/" target="_blank">前端乱炖</a></li>
+    
+      
+          
+          
+      <li><a href="http://www.v2ex.com/" target="_blank">V2EX</a></li>
+    
+      
+          
+          
+      <li><a href="http://www.css88.com/" target="_blank">WEB前端开发</a></li>
+    
+  </ul><!-- /.dl-menu -->
+</nav><!-- /.dl-menuwrapper -->
+
+
+
+<div class="entry-header">
+  
+    <div class="image-credit">Image source: 
+      <a href="http://www.dargadgetz.com/ios-7-abstract-wallpaper-pack-for-iphone-5-and-ipod-touch-retina/">dargadgetz</a>
+    </div><!-- /.image-credit -->
+  
+  <div class="entry-image">
+    <img src="/images/abstract-8.jpg" alt="SublimeLinter实践">
+  </div><!-- /.entry-image -->
+</div><!-- /.entry-header -->
+
+
+<div id="main" role="main">
+  <article class="hentry">
+    <header class="header-title">
+      <div class="header-title-wrap">
+        
+          <h1 class="entry-title">
+            <a href="/sublimelinter-in-action/" rel="bookmark" title="SublimeLinter实践">SublimeLinter实践</a>
+          </h1>
+        
+        <h2>2014-12-29</h2>
+        
+      </div><!-- /.header-title-wrap -->
+    </header>
+    <div class="entry-content">
+      <h3 id="lint">何为 Lint</h3>
+
+<p><strong>Lint</strong> 在编程里意味着一种代码验证工具，不同的<strong>Lint</strong> 会根据语言本身的语法，再加上一些最佳实践形成的代码写法和风格，去验证你的代码是否符合规定,这是我的个人见解，大家也可以去看 Wiki 上的解释 <a href="Lint">Lint(software)</a>。</p>
+
+<p>在前端开发里，我们熟知的<strong>Lint</strong>就有 <a href="jshint">jshint</a>、<a href="jslint">jslint</a>、<a href="csslint">csslint</a>、<a href="scsslint">scsslint</a>。其它语言也有相应的 <code>lint</code>,这里就不一一列出了，感兴趣的可以去看这份<a href="http://en.wikipedia.org/wiki/List_of_tools_for_static_code_analysis">list</a>。
+<!-- more --></p>
+
+<p>这里要注意的一下就是 <code>jshint</code> 和 <code>jslint</code>, <code>jslint</code>检测的严格程度是无法被改变的，倘若要修改默认规则，只能通过修改<a href="jslint">jslint</a> 的源码去实现。相比之下，<a href="jshint">jshint</a>就显得友好得多，可以通过配置文件的方式去更改默认规则。
+在实际开发中，我们并没有那么理想的状况，有时甚至会应用一些黑魔法，所以选择<a href="jshint">jshint</a>会好过点。想具体了解两者的差别，这里有篇文章值得一看<a href="http://www.scottlogic.com/blog/2011/03/28/jslint-vs-jshint.html">jslint-vs-jshint</a>。</p>
+
+<h3 id="sublimelinter">为什么要用 SublimeLinter</h3>
+
+<p>首先要提的就是 <code>code review</code>, <code>code review</code>其实就是一种代码检测手段了，我提过一次，但是我们的团队不崇尚这个，认为开发任务都来不及更没有时间花在<code>code review</code>上了。但我还是要表明一下我的态度：不肯在 code review 上花时间的，一定会在其它地方加倍还回来，出来‘码’的，迟早要还。</p>
+
+<p>既然没有 <code>code review</code>,那就得用其它办法规范一下代码的语法和格式，因为像我们很多后端工程师写<code>js</code>是没有章法可言的，能达到效果就行，从不考虑维护性。而且我们有的前端经验也比较少，所以引入<a href="sublimelinter">SublimeLinter</a> 就能在自己写代码的时候发现问题及时解决。</p>
+
+<p>因为现在都是写<code>scss</code>了，我在项目里用到的两个<a href="sublimelinter">SublimeLinter</a> 的plugin 是<a href="SublimeLinter-jshint">SublimeLinter-jshint</a> 和 <a href="SublimeLinter-contrib-scss-lint">SublimeLinter-contrib-scss-lint</a>。</p>
+
+<p>要想用<a href="SublimeLinter-jshint">SublimeLinter-jshint</a>，除了要在 <a href="sublimetext">sublime text</a> 中装上这个包，还需要你的机器上有<a href="nodejs">nodejs</a>环境，并全局安装了<code>jshint</code></p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">npm</span> <span class="nx">install</span> <span class="o">-</span><span class="nx">g</span> <span class="nx">jshint</span></code></pre></div>
+
+<p>如果你是想我一样的使用<code>NVM</code>和<code>zsh</code>的话，要记得把<code>NVM</code>的加载,下面这句</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">[</span> <span class="o">-</span><span class="nx">s</span> <span class="s2">&quot;/Users/Kimi/.nvm/nvm.sh&quot;</span> <span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="p">.</span> <span class="s2">&quot;/Users/Kimi/.nvm/nvm.sh&quot;</span></code></pre></div>
+
+<p>放到<code>.zshenv</code>中，而不是<code>.zshrc</code>。因为放到<code>.zshrc</code>中，<code>nvm</code>只有在终端打开的时候才会去加载，而放到<code>.zshenv</code>中，会在开机的时候加载。</p>
+
+<p>做完以上步骤，把你的<code>.jshintrc</code>配置扔在项目的某个目录下，<a href="sublimelinter">SublimeLinter</a>会自动去寻找这些配置文件，找不到就用默认的。</p>
+
+<p>贴出我的<code>.jshintrc</code>配置</p>
+
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&quot;es5&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nt">&quot;bitwise&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nt">&quot;curly&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nt">&quot;eqeqeq&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nt">&quot;forin&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="nt">&quot;immed&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nt">&quot;latedef&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nt">&quot;newcap&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nt">&quot;noarg&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nt">&quot;noempty&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nt">&quot;nonew&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nt">&quot;plusplus&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="nt">&quot;undef&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nt">&quot;strict&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="nt">&quot;trailing&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="nt">&quot;globalstrict&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nt">&quot;nonstandard&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nt">&quot;white&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nt">&quot;indent&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="nt">&quot;expr&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nt">&quot;onevar&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="err">//</span> <span class="err">开发环境</span>
+  <span class="nt">&quot;browser&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nt">&quot;jquery&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nt">&quot;node&quot;</span> <span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="err">//</span> <span class="err">自定义全局变量</span>
+  <span class="nt">&quot;globals&quot;</span> <span class="p">:</span> <span class="p">{}</span>
+<span class="p">}</span></code></pre></div>
+
+<p><a href="SublimeLinter-contrib-scss-lint">SublimeLinter-contrib-scss-lint</a>的使用和上面的类似，只不过要求你的机器上要有<a href="ruby">ruby</a>而且通过<code>gem install scss-lint</code>装了<a href="scsslint">scss-lint</a>。</p>
+
+
+      <footer class="entry-meta">
+        <span class="entry-tags">
+          
+            <a href="/tags/#sublime text" title="Pages tagged sublime text" class="tag">sublime text</a>
+          
+            <a href="/tags/#lint" title="Pages tagged lint" class="tag">lint</a>
+          
+        </span>
+        <span>
+          <a href="/sublimelinter-in-action/" rel="bookmark" title="SublimeLinter实践">SublimeLinter实践</a> was published on
+          <span class="entry-date date published updated">
+            <time datetime="2014-12-29T00:00:00+08:00">December 29, 2014</time>
+          </span>
+        </span>
+        
+          (revised: <span class="entry-date date modified">
+            <time datetime="2014-12-29">12/29/2014</time>
+          </span>)
+        
+        <span class="author vcard">
+          <span class="fn">
+            <a href="/about/" title="About Kimi">Kimi</a>
+          </span>
+        </span>
+        <div class="social-share">
+  <ul class="socialcount socialcount-small inline-list">
+    <li>
+      <a class="jiathis_button_tsina" title="分享到新浪微博"><i class="iconfont icon-weibo-square"></i></a>
+    </li>
+    <li>
+      <a class="jiathis_button_weixin" title="分享到微信"><i class="iconfont icon-weixin-square"></i></a>
+    </li>
+    <li>
+      <a class="jiathis_button_renren" title="分享到人人网"><i class="iconfont icon-renren-square"></i></a>
+    </li>
+    <li>
+      <a class="jiathis_button_qzone" title="分享QQ空间"><i class="iconfont icon-qzone-square"></i></a>
+    </li>
+    <li>
+      <a class="jiathis_button_douban" title="分享到豆瓣网"><i class="iconfont icon-douban-square"></i></a>
+    </li>
+  </ul>
+</div>
+
+
+      </footer>
+    </div><!-- /.entry-content -->
+
+    
+      
+      <div class="ds-thread"></div>
+      
+    
+
+    <div class="read-more">
+  
+    <div class="read-more-header">
+      <a href="/front-end-automation-browsersync-livereload/" class="read-more-btn">更多内容</a>
+    </div><!-- /.read-more-header -->
+    <div class="read-more-content">
+      <h3><a href="/front-end-automation-browsersync-livereload/" title="前端自动化工程之浏览器同步更新">前端自动化工程之浏览器同步更新</a></h3>
+      <p>browsersnyc 和 livereload 在前端自动化工程中的实践 <a href="/front-end-automation-browsersync-livereload/">Continue reading</a></p>
+    </div><!-- /.read-more-content -->
+  
+  <div class="read-more-list">
+    
+      <div class="list-item">
+        <h4><a href="/about-autologin/" title="自动登陆那点事">自动登陆那点事</a></h4>
+        <span>Published on November 24, 2014</span>
+      </div><!-- /.list-item -->
+    
+      <div class="list-item">
+        <h4><a href="/running-with-thinking/" title="当我在跑步时我在想些什么？">当我在跑步时我在想些什么？</a></h4>
+        <span>Published on August 24, 2014</span>
+      </div><!-- /.list-item -->
+    
+  </div><!-- /.read-more-list -->
+</div><!-- /.read-more -->
+
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo">
+    <span>
+  &copy; 2014 Kimi.
+  Powered by <a href="http://jekyllrb.com">Jekyll</a>
+  design by <a href="https://mademistakes.com">Michael Rose</a>.
+</span>
+
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script src="//libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="/assets/js/scripts.min.js"></script>
+
+
+
+<!-- jiathis 分享 -->
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+
+
+
+
+<!-- 百度统计异步代码 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?f85720f7b69b6aa1f1dbfcaeea5ae412";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name: 'calledt'};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';
+    ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+
+
+
+
+</body>
+</html>
