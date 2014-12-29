@@ -1,14 +1,14 @@
 // Typography
 // --------------------------------------------------
 
-$base-font: 'Georgia', 'Xin Gothic', 'Hiragino Sans GB', 'Droid Sans Fallback', 'Microsoft YaHei', sans-serif;
+$base-font: Avenir, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif, iconfont;
 $heading-font: $base-font;
 $caption-font: $base-font;
 $code-font: monospace;
 $alt-font: serif;
 
 $doc-font-size: 16;
-$doc-line-height: 26;
+$doc-line-height: 28.8;
 
 
 // set-up the body font-size / line-height
@@ -22,8 +22,8 @@ body {
 // --------------------------------------------------
 $base-color				   : #222;
 $body-color      		 : #e8e8e8;
-$text-color      		 : #444443;
-$heading-color        : #222223;
+$text-color      		 : #333;
+$heading-color       : #000;
 $comp-color 	 		   : complement($base-color);
 $border-color    		 : lighten($base-color,60);
 $white           		 : #fff;
