@@ -1,7 +1,7 @@
 ---
 layout: post-index
-title: All Posts
-description: "An archive of posts."
+title: 所有文章
+description: "文章归档"
 comments: false
 share: false
 ---
@@ -15,21 +15,20 @@ share: false
     <h2 id="{{ this_year }}-ref">{{ this_year }}</h2>
     <ul>
   {% endif %}
-
-    <li class="entry-title">
-      <a href="{{ site.url }}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-    </li>
-
+      <li class="entry-title">
+        <a href="{{ site.url }}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+      </li>
   {% if forloop.last %}
     </ul>
   </article>
   {% else %}
-    {% if this_year != next_year %}
-      </ul>
-    </article>
-    <article>
-      <h2 id="{{ next_year }}-ref">{{next_year}}</h2>
+  {% if this_year != next_year %}
+    </ul>
+  </article>
+
+  <article>
+    <h2 id="{{ next_year }}-ref">{{next_year}}</h2>
     <ul>
-    {% endif %}
+  {% endif %}
   {% endif %}
 {% endfor %}
