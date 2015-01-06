@@ -38,6 +38,6 @@ image:
 * [How to Preview image before Upload](http://forums.asp.net/t/1320559.aspx)
 * [Preview an image before it is uploaded](http://stackoverflow.com/questions/4459379/preview-an-image-before-it-is-uploaded?rq=1)
 
-[fastdfs]: code.google.com/p/fastdfs "fastdfs"
+[fastdfs]: https://code.google.com/p/fastdfs "fastdfs"
 [nginx]: http://nginx.org "nginx"
 [mysql]: http://www.mysql.com "mysql"
