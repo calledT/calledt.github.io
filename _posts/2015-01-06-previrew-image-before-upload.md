@@ -3,7 +3,7 @@ layout: post
 title: 兼容IE、Chrome、FF的图片上传前预览
 description: "图片上传前预览，兼容所有浏览器"
 modified: 2015-01-06
-tags: [IE, 图片预览]
+tags: [IE,图片预览]
 image:
   feature: abstract-4.jpg
   credit: dargadgetz
