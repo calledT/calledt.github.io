@@ -4,13 +4,140 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2014-12-28T11:25:17+08:00</updated>
+<updated>2015-01-06T22:51:14+08:00</updated>
 <id>/</id>
 <author>
   <name>Kimi</name>
   <uri>/</uri>
   <email></email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[兼容IE、Chrome、FF的图片上传前预览]]></title>
+ <link rel="alternate" type="text/html" href="/previrew-image-before-upload/" />
+  <id>/previrew-image-before-upload</id>
+  <updated>2015-01-06T00:00:00-00:00</updated>
+  <published>2015-01-06T00:00:00+08:00</published>
+  
+  <author>
+    <name>Kimi</name>
+    <uri></uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;h3 id=&quot;section&quot;&gt;原由&lt;/h3&gt;
+
+&lt;p&gt;  最近在帮同事解决一个图片显示的问题，情形是这样的。图片通过异步上传，成功后返回一个图片的链接，再把这个链接赋给&lt;code&gt;img&lt;/code&gt;标签的&lt;code&gt;src&lt;/code&gt;属性，但这个过程会间歇性的出现&lt;code&gt;404&lt;/code&gt;错误。
+&lt;!-- more --&gt;&lt;/p&gt;
+
+&lt;p&gt;  &lt;code&gt;404&lt;/code&gt;我们知道是访问一个不存在的链接，但在浏览器中直接访问这个链接，又是可以的。反复排查了前端代码和后端代码，也没发现有错误的地方。再经过一番深入了解，知道上传图片的功能用的是内网的一个文件系统&lt;a href=&quot;https://code.google.com/p/fastdfs&quot; title=&quot;fastdfs&quot; target=&quot;_blank&quot;&gt;fasetdfs&lt;/a&gt;，于是就想会不会是磁盘快满了才会出现这个问题，以前遇到过&lt;a href=&quot;http://www.mysql.com&quot; title=&quot;mysql&quot; target=&quot;_blank&quot;&gt;mysql&lt;/a&gt;所在服务器因磁盘空间不够出现过各种诡异问题。&lt;/p&gt;
+
+&lt;p&gt;  从负责这个文件系统架设的工程师那里拿到说是文件系统所在服务器的&lt;code&gt;IP&lt;/code&gt;后就上去查磁盘空间大小（当时自己也不了解这个文件系统，以为这个 IP 所在的服务器就是存放文件的地方），看着磁盘空间还剩很多，就带着疑惑上网查找，发现那个工程师给我的并不是最终存放文件的服务器，只是&lt;a href=&quot;http://nginx.org&quot; title=&quot;nginx&quot; target=&quot;_blank&quot;&gt;nginx&lt;/a&gt;所在的机器，在打开&lt;code&gt;nginx.conf&lt;/code&gt;看到配置后，就一切明了了。&lt;/p&gt;
+
+&lt;p&gt;  原来最终存放文件的是两台机器，&lt;a href=&quot;http://nginx.org&quot; title=&quot;nginx&quot; target=&quot;_blank&quot;&gt;nginx&lt;/a&gt;担任负载均衡作用，而负载策略是随机的。随机的负载策略加上文件系统同步文件的时间差，就造成了上传响应成功，设置&lt;code&gt;img&lt;/code&gt;标签的&lt;code&gt;src&lt;/code&gt;属性出现&lt;code&gt;404&lt;/code&gt;想象。&lt;/p&gt;
+
+&lt;p&gt;解决的办法就是&lt;a href=&quot;http://nginx.org&quot; title=&quot;nginx&quot; target=&quot;_blank&quot;&gt;nginx&lt;/a&gt;根据&lt;code&gt;IP&lt;/code&gt;去负载或者设置文件系统为主从，根据我们的业务需求选择了主从。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;图片上传前预览代码&lt;/h3&gt;
+
+&lt;p&gt;  回过头想了想，发现这地方其实存在交互不合理的地方，正确的做法应该是图片在上传前可以预览，而不是一选择图片就上传然后返回图片的链接回来。所以写了以下兼容所有浏览器的图片上传前预览的代码。&lt;/p&gt;
+
+&lt;pre class=&quot;codepen&quot; data-height=&quot;400&quot; data-type=&quot;result&quot; data-href=&quot;ZYBZze&quot; data-user=&quot;calledT&quot; data-safe=&quot;true&quot;&gt;
+    &lt;code&gt;&lt;/code&gt;
+    &lt;a href=&quot;http://codepen.io/calledT/embed/ZYBZze/&quot;&gt;Check out this Pen!&lt;/a&gt; 
+&lt;/pre&gt;
+&lt;script async=&quot;&quot; src=&quot;http://codepen.io/assets/embed/ei.js&quot;&gt; &lt;/script&gt;
+
+&lt;h4 id=&quot;section-2&quot;&gt;参考链接：&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://forums.asp.net/t/1320559.aspx&quot; target=&quot;_blank&quot;&gt;How to Preview image before Upload&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/questions/4459379/preview-an-image-before-it-is-uploaded?rq=1&quot; target=&quot;_blank&quot;&gt;Preview an image before it is uploaded&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+  &lt;p&gt;&lt;a href=&quot;/previrew-image-before-upload/&quot;&gt;兼容IE、Chrome、FF的图片上传前预览&lt;/a&gt; was originally published by Kimi at &lt;a href=&quot;&quot;&gt;T 馆&lt;/a&gt; on January 06, 2015.&lt;/p&gt;</content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[SublimeLinter实践]]></title>
+ <link rel="alternate" type="text/html" href="/sublimelinter-in-action/" />
+  <id>/sublimelinter-in-action</id>
+  <updated>2014-12-29T00:00:00-00:00</updated>
+  <published>2014-12-29T00:00:00+08:00</published>
+  
+  <author>
+    <name>Kimi</name>
+    <uri></uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;h3 id=&quot;lint&quot;&gt;何为 Lint&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Lint&lt;/strong&gt; 在编程里意味着一种代码验证工具，不同的&lt;strong&gt;Lint&lt;/strong&gt; 会根据语言本身的语法，再加上一些最佳实践形成的代码写法和风格，去验证你的代码是否符合规定,这是我的个人见解，大家也可以去看 Wiki 上的解释 &lt;a href=&quot;Lint&quot;&gt;Lint(software)&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;在前端开发里，我们熟知的&lt;strong&gt;Lint&lt;/strong&gt;就有 &lt;a href=&quot;jshint&quot;&gt;jshint&lt;/a&gt;、&lt;a href=&quot;jslint&quot;&gt;jslint&lt;/a&gt;、&lt;a href=&quot;csslint&quot;&gt;csslint&lt;/a&gt;、&lt;a href=&quot;scsslint&quot;&gt;scsslint&lt;/a&gt;。其它语言也有相应的 &lt;code&gt;lint&lt;/code&gt;,这里就不一一列出了，感兴趣的可以去看这份&lt;a href=&quot;http://en.wikipedia.org/wiki/List_of_tools_for_static_code_analysis&quot;&gt;list&lt;/a&gt;。
+&lt;!-- more --&gt;&lt;/p&gt;
+
+&lt;p&gt;这里要注意的一下就是 &lt;code&gt;jshint&lt;/code&gt; 和 &lt;code&gt;jslint&lt;/code&gt;, &lt;code&gt;jslint&lt;/code&gt;检测的严格程度是无法被改变的，倘若要修改默认规则，只能通过修改&lt;a href=&quot;jslint&quot;&gt;jslint&lt;/a&gt; 的源码去实现。相比之下，&lt;a href=&quot;jshint&quot;&gt;jshint&lt;/a&gt;就显得友好得多，可以通过配置文件的方式去更改默认规则。
+在实际开发中，我们并没有那么理想的状况，有时甚至会应用一些黑魔法，所以选择&lt;a href=&quot;jshint&quot;&gt;jshint&lt;/a&gt;会好过点。想具体了解两者的差别，这里有篇文章值得一看&lt;a href=&quot;http://www.scottlogic.com/blog/2011/03/28/jslint-vs-jshint.html&quot;&gt;jslint-vs-jshint&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h3 id=&quot;sublimelinter&quot;&gt;为什么要用 SublimeLinter&lt;/h3&gt;
+
+&lt;p&gt;首先要提的就是 &lt;code&gt;code review&lt;/code&gt;, &lt;code&gt;code review&lt;/code&gt;其实就是一种代码检测手段了，我提过一次，但是我们的团队不崇尚这个，认为开发任务都来不及更没有时间花在&lt;code&gt;code review&lt;/code&gt;上了。但我还是要表明一下我的态度：不肯在 code review 上花时间的，一定会在其它地方加倍还回来，出来‘码’的，迟早要还。&lt;/p&gt;
+
+&lt;p&gt;既然没有 &lt;code&gt;code review&lt;/code&gt;,那就得用其它办法规范一下代码的语法和格式，因为像我们很多后端工程师写&lt;code&gt;js&lt;/code&gt;是没有章法可言的，能达到效果就行，从不考虑维护性。而且我们有的前端经验也比较少，所以引入&lt;a href=&quot;sublimelinter&quot;&gt;SublimeLinter&lt;/a&gt; 就能在自己写代码的时候发现问题及时解决。&lt;/p&gt;
+
+&lt;p&gt;因为现在都是写&lt;code&gt;scss&lt;/code&gt;了，我在项目里用到的两个&lt;a href=&quot;sublimelinter&quot;&gt;SublimeLinter&lt;/a&gt; 的plugin 是&lt;a href=&quot;SublimeLinter-jshint&quot;&gt;SublimeLinter-jshint&lt;/a&gt; 和 &lt;a href=&quot;SublimeLinter-contrib-scss-lint&quot;&gt;SublimeLinter-contrib-scss-lint&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;要想用&lt;a href=&quot;SublimeLinter-jshint&quot;&gt;SublimeLinter-jshint&lt;/a&gt;，除了要在 &lt;a href=&quot;sublimetext&quot;&gt;sublime text&lt;/a&gt; 中装上这个包，还需要你的机器上有&lt;a href=&quot;nodejs&quot;&gt;nodejs&lt;/a&gt;环境，并全局安装了&lt;code&gt;jshint&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;nx&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;g&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;jshint&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;如果你是想我一样的使用&lt;code&gt;NVM&lt;/code&gt;和&lt;code&gt;zsh&lt;/code&gt;的话，要记得把&lt;code&gt;NVM&lt;/code&gt;的加载,下面这句&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;/Users/Kimi/.nvm/nvm.sh&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;/Users/Kimi/.nvm/nvm.sh&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;放到&lt;code&gt;.zshenv&lt;/code&gt;中，而不是&lt;code&gt;.zshrc&lt;/code&gt;。因为放到&lt;code&gt;.zshrc&lt;/code&gt;中，&lt;code&gt;nvm&lt;/code&gt;只有在终端打开的时候才会去加载，而放到&lt;code&gt;.zshenv&lt;/code&gt;中，会在开机的时候加载。&lt;/p&gt;
+
+&lt;p&gt;做完以上步骤，把你的&lt;code&gt;.jshintrc&lt;/code&gt;配置扔在项目的某个目录下，&lt;a href=&quot;sublimelinter&quot;&gt;SublimeLinter&lt;/a&gt;会自动去寻找这些配置文件，找不到就用默认的。&lt;/p&gt;
+
+&lt;p&gt;贴出我的&lt;code&gt;.jshintrc&lt;/code&gt;配置&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;quot;es5&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;quot;bitwise&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;quot;curly&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;quot;eqeqeq&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;quot;forin&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;quot;immed&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;quot;latedef&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;quot;newcap&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;quot;noarg&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;quot;noempty&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;quot;nonew&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;quot;plusplus&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;quot;undef&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;quot;strict&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;quot;trailing&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;quot;globalstrict&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;quot;nonstandard&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;quot;white&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;quot;indent&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;quot;expr&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;quot;onevar&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;err&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;开发环境&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;quot;browser&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;quot;jquery&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;quot;node&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;err&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;自定义全局变量&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;quot;globals&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a href=&quot;SublimeLinter-contrib-scss-lint&quot;&gt;SublimeLinter-contrib-scss-lint&lt;/a&gt;的使用和上面的类似，只不过要求你的机器上要有&lt;a href=&quot;ruby&quot;&gt;ruby&lt;/a&gt;而且通过&lt;code&gt;gem install scss-lint&lt;/code&gt;装了&lt;a href=&quot;scsslint&quot;&gt;scss-lint&lt;/a&gt;。&lt;/p&gt;
+
+
+  &lt;p&gt;&lt;a href=&quot;/sublimelinter-in-action/&quot;&gt;SublimeLinter实践&lt;/a&gt; was originally published by Kimi at &lt;a href=&quot;&quot;&gt;T 馆&lt;/a&gt; on December 29, 2014.&lt;/p&gt;</content>
+</entry>
 
 
 <entry>
@@ -29,51 +156,51 @@
 
 &lt;h3 id=&quot;sublime-text-plugin--chrome-extends&quot;&gt;sublime text plugin &amp;amp; chrome extends&lt;/h3&gt;
 
-&lt;p&gt;刚接触 &lt;a href=&quot;sublime-text&quot;&gt;sublime text&lt;/a&gt;的时候,非常热衷于折腾插件,当时有一款 &lt;a href=&quot;livereload&quot;&gt;livereload&lt;/a&gt;的&lt;a href=&quot;https://sublime.wbond.net/packages/LiveReload&quot;&gt;sublime插件&lt;/a&gt;,配合浏览器安装的&lt;a href=&quot;https://chrome.google.com/extensions/detail/jnihajbhpnppcggbcgedagnkighmdlei&quot;&gt;livereload扩展&lt;/a&gt;,安装完在扩展程序界面允许这个扩展访问文件网址,就可以通过 &lt;code&gt;file://&lt;/code&gt;文件的形式或者以&lt;code&gt;server&lt;/code&gt;的形式同步查看页面源文件修改之后在浏览器的效果,不用去手动刷新.这样的方式对于写简单的页面非常有用,你可以省却手动启动一个&lt;code&gt;server&lt;/code&gt;的步骤,因为&lt;a href=&quot;livereload&quot;&gt;livereload&lt;/a&gt;的&lt;a href=&quot;https://sublime.wbond.net/packages/LiveReload&quot;&gt;sublime插件&lt;/a&gt;已经做了这件事.对于有超宽屏或者双显示器的页面重构人员,这相当令人激动的.
+&lt;p&gt;刚接触 &lt;a href=&quot;sublime-text&quot;&gt;sublime text&lt;/a&gt;的时候，非常热衷于折腾插件，当时有一款 &lt;a href=&quot;livereload&quot;&gt;livereload&lt;/a&gt;的&lt;a href=&quot;https://sublime.wbond.net/packages/LiveReload&quot;&gt;sublime插件&lt;/a&gt;，配合浏览器安装的&lt;a href=&quot;https://chrome.google.com/extensions/detail/jnihajbhpnppcggbcgedagnkighmdlei&quot;&gt;livereload扩展&lt;/a&gt;，安装完在扩展程序界面允许这个扩展访问文件网址，就可以通过 &lt;code&gt;file://&lt;/code&gt;文件的形式或者以&lt;code&gt;server&lt;/code&gt;的形式同步查看页面源文件修改之后在浏览器的效果，不用去手动刷新。这样的方式对于写简单的页面非常有用，你可以省却手动启动一个&lt;code&gt;server&lt;/code&gt;的步骤，因为&lt;a href=&quot;livereload&quot;&gt;livereload&lt;/a&gt;的&lt;a href=&quot;https://sublime.wbond.net/packages/LiveReload&quot;&gt;sublime插件&lt;/a&gt;已经做了这件事。对于有超宽屏或者双显示器的页面重构人员，这相当令人激动的。
 &lt;!-- more --&gt;&lt;/p&gt;
 
-&lt;p&gt;为了写这篇文章,特意再去体验一把,因为我现在用的是&lt;code&gt;sublime text 3&lt;/code&gt;,以前那个插件是给&lt;code&gt;sublime text 2&lt;/code&gt;用的,发现现在有一个&lt;a href=&quot;https://github.com/dz0ny/LiveReload-sublimetext2/tree/devel&quot;&gt;devel version&lt;/a&gt;,说是给&lt;code&gt;sublime text 3&lt;/code&gt;的,但我装上,建了一个测试页面,点击浏览器上的 &lt;a href=&quot;https://chrome.google.com/extensions/detail/jnihajbhpnppcggbcgedagnkighmdlei&quot;&gt;livereload扩展&lt;/a&gt;按钮,却提示&lt;/p&gt;
+&lt;p&gt;为了写这篇文章，特意再去体验一把，因为我现在用的是&lt;code&gt;sublime text 3&lt;/code&gt;，以前那个插件是给&lt;code&gt;sublime text 2&lt;/code&gt;用的，发现现在有一个&lt;a href=&quot;https://github.com/dz0ny/LiveReload-sublimetext2/tree/devel&quot;&gt;devel version&lt;/a&gt;，说是给&lt;code&gt;sublime text 3&lt;/code&gt;的，但我装上，建了一个测试页面，点击浏览器上的 &lt;a href=&quot;https://chrome.google.com/extensions/detail/jnihajbhpnppcggbcgedagnkighmdlei&quot;&gt;livereload扩展&lt;/a&gt;按钮，却提示&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;Could not connect to LiveReload server. Please make sure that LiveReload 2.3 (or later) or another compatible server is running.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;一开始以为是浏览器插件的问题,上网搜也没找到多少有用信息,只是看到这个浏览器插件评论页有不少人也在抱怨这个问题.到这里都会认为真的是这个扩展在新版浏览器中的问题了.但是强迫症的我还是把&lt;code&gt;sublime text 2&lt;/code&gt;装上,验证到底是不是浏览器插件的问题.&lt;/p&gt;
+&lt;p&gt;一开始以为是浏览器插件的问题，上网搜也没找到多少有用信息，只是看到这个浏览器插件评论页有不少人也在抱怨这个问题，到这里都会认为真的是这个扩展在新版浏览器中的问题了，但是强迫症的我还是把&lt;code&gt;sublime text 2&lt;/code&gt;装上，验证到底是不是浏览器插件的问题。&lt;/p&gt;
 
-&lt;p&gt;最后的结论: &lt;strong&gt;不是 livereload 浏览器扩展的问题&lt;/strong&gt;,是&lt;code&gt;sublime text 3&lt;/code&gt;插件的问题.&lt;/p&gt;
+&lt;p&gt;最后的结论: &lt;strong&gt;不是 livereload 浏览器扩展的问题&lt;/strong&gt;，是&lt;code&gt;sublime text 3&lt;/code&gt;插件的问题。&lt;/p&gt;
 
 &lt;h3 id=&quot;grunt-contrib-watch&quot;&gt;grunt-contrib-watch&lt;/h3&gt;
 
-&lt;p&gt;我在接触了&lt;a href=&quot;grunt&quot;&gt;grunt&lt;/a&gt;之后,就放弃了上面那种使用方式.因为我会配置一套工作流来协助开发,&lt;a href=&quot;livereload&quot;&gt;livereload&lt;/a&gt;会是工作流中的一个&lt;code&gt;task&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;我在接触了&lt;a href=&quot;grunt&quot;&gt;grunt&lt;/a&gt;之后，就放弃了上面那种使用方式。因为我会配置一套工作流来协助开发，&lt;a href=&quot;livereload&quot;&gt;livereload&lt;/a&gt;会是工作流中的一个&lt;code&gt;task&lt;/code&gt;。&lt;/p&gt;
 
-&lt;p&gt;以前有一个叫&lt;a href=&quot;https://github.com/gruntjs/grunt-contrib-livereload&quot;&gt;grunt-contrib-livereload&lt;/a&gt;的plugin,不过现在已经合并到&lt;a href=&quot;https://github.com/gruntjs/grunt-contrib-watch#optionslivereload&quot;&gt;grunt-contrib-watch&lt;/a&gt;中去了.关于怎样配置任务可以去看&lt;a href=&quot;https://github.com/gruntjs/grunt-contrib-watch/blob/master/docs/watch-examples.md#enabling-live-reload-in-your-html&quot;&gt;enabling-live-reload-in-your-html&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;以前有一个叫&lt;a href=&quot;https://github.com/gruntjs/grunt-contrib-livereload&quot;&gt;grunt-contrib-livereload&lt;/a&gt;的plugin，不过现在已经合并到&lt;a href=&quot;https://github.com/gruntjs/grunt-contrib-watch#optionslivereload&quot;&gt;grunt-contrib-watch&lt;/a&gt;中去了.关于怎样配置任务可以去看&lt;a href=&quot;https://github.com/gruntjs/grunt-contrib-watch/blob/master/docs/watch-examples.md#enabling-live-reload-in-your-html&quot;&gt;enabling-live-reload-in-your-html&lt;/a&gt;。&lt;/p&gt;
 
-&lt;p&gt;这种方式的相比上面那种方式的优点是配合&lt;a href=&quot;grunt&quot;&gt;grunt&lt;/a&gt;的&lt;code&gt;task&lt;/code&gt;,监控更改的文件类型更多了,毕竟现在好多开发者在使用&lt;a href=&quot;sass&quot;&gt;sass&lt;/a&gt;,&lt;a href=&quot;less&quot;&gt;less&lt;/a&gt;, &lt;a href=&quot;coffeescript&quot;&gt;coffeescript&lt;/a&gt;这些预处理语言或者各式各样的模板引擎.&lt;/p&gt;
+&lt;p&gt;这种方式的相比上面那种方式的优点是配合&lt;a href=&quot;grunt&quot;&gt;grunt&lt;/a&gt;的&lt;code&gt;task&lt;/code&gt;，监控更改的文件类型更多了，毕竟现在好多开发者在使用&lt;a href=&quot;sass&quot;&gt;sass&lt;/a&gt;，&lt;a href=&quot;less&quot;&gt;less&lt;/a&gt;， &lt;a href=&quot;coffeescript&quot;&gt;coffeescript&lt;/a&gt;这些预处理语言或者各式各样的模板引擎。&lt;/p&gt;
 
 &lt;p&gt;但这种方式我们还是需要安装浏览器插件或者在页面里嵌入类似下面的&lt;code&gt;livereload脚本&lt;/code&gt;&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;//localhost:35729/livereload.js&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/script&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;嵌入脚本的话上线的时候还得移除它,当然有工具可以在上线的时候处理掉这段脚本.但是这样终究显得有些不够全自动,呵呵.&lt;/p&gt;
+&lt;p&gt;嵌入脚本的话上线的时候还得移除它，当然有工具可以在上线的时候处理掉这段脚本.但是这样终究显得有些不够全自动，呵呵。&lt;/p&gt;
 
 &lt;h2 id=&quot;browsersync&quot;&gt;browsersync&lt;/h2&gt;
 
-&lt;p&gt;在工具的选择上我算是一个比较喜新厌旧的人了.所以用过&lt;a href=&quot;gulp&quot;&gt;gulp&lt;/a&gt;之后,我就不再写&lt;a href=&quot;grunt&quot;&gt;grunt&lt;/a&gt;了.&lt;a href=&quot;gulp&quot;&gt;gulp&lt;/a&gt;写起任务来比&lt;a href=&quot;grunt&quot;&gt;grunt&lt;/a&gt;优雅多了,而且现在&lt;a href=&quot;gulp&quot;&gt;gulp&lt;/a&gt;社区的繁荣,相比年初的时候,可以毫不犹豫的切换过来.&lt;/p&gt;
+&lt;p&gt;在工具的选择上我算是一个比较喜新厌旧的人了！所以用过&lt;a href=&quot;gulp&quot;&gt;gulp&lt;/a&gt;之后，我就不再写&lt;a href=&quot;grunt&quot;&gt;grunt&lt;/a&gt;了。&lt;a href=&quot;gulp&quot;&gt;gulp&lt;/a&gt;写起任务来比&lt;a href=&quot;grunt&quot;&gt;grunt&lt;/a&gt;优雅多了，而且现在&lt;a href=&quot;gulp&quot;&gt;gulp&lt;/a&gt;社区的繁荣，相比年初的时候，可以毫不犹豫的切换过来。&lt;/p&gt;
 
-&lt;p&gt;好了,吐槽完毕,进入正题,接下来要介绍的工具叫&lt;a href=&quot;browsersync&quot;&gt;browsersync&lt;/a&gt;,会用&lt;code&gt;gulpfile&lt;/code&gt;来做示例, 但它是不依赖于&lt;a href=&quot;gulp&quot;&gt;gulp&lt;/a&gt;或者&lt;a href=&quot;grunt&quot;&gt;grunt&lt;/a&gt;的.&lt;/p&gt;
+&lt;p&gt;好了，吐槽完毕，进入正题，接下来要介绍的工具叫&lt;a href=&quot;browsersync&quot;&gt;browsersync&lt;/a&gt;，会用&lt;code&gt;gulpfile&lt;/code&gt;来做示例，但它是不依赖于&lt;a href=&quot;gulp&quot;&gt;gulp&lt;/a&gt;或者&lt;a href=&quot;grunt&quot;&gt;grunt&lt;/a&gt;的。&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;browsersync&quot;&gt;browsersync&lt;/a&gt;是一款多端同步刷新页面内容的工具,这能大大节省开发测试的时间.比如你在 &lt;code&gt;chrome&lt;/code&gt; 和 &lt;code&gt;IE&lt;/code&gt;中打开同一个被 &lt;a href=&quot;browsersync&quot;&gt;browsersync&lt;/a&gt; 监控的 URL, 在 &lt;code&gt;chrome&lt;/code&gt; 页面表单中输入的内容会被同步到 &lt;code&gt;IE&lt;/code&gt;浏览器中,用户操作也是能同步的,很酷是吧.当然啦,像&lt;a href=&quot;livereload&quot;&gt;livereload&lt;/a&gt;的修改源文件刷新浏览器页面的功能也是有的.多端同步在开发响应式网站的时候相当有用,想想你电脑上有好几个浏览器,而且还手机端,pad端 上的浏览器,一个个打开去测多浪费时间呀.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;browsersync&quot;&gt;browsersync&lt;/a&gt;是一款多端同步刷新页面内容的工具，这能大大节省开发测试的时间。比如你在 &lt;code&gt;chrome&lt;/code&gt; 和 &lt;code&gt;IE&lt;/code&gt;中打开同一个被 &lt;a href=&quot;browsersync&quot;&gt;browsersync&lt;/a&gt; 监控的 URL，在 &lt;code&gt;chrome&lt;/code&gt; 页面表单中输入的内容会被同步到 &lt;code&gt;IE&lt;/code&gt;浏览器中，用户操作也是能同步的，很酷是吧.当然啦，像&lt;a href=&quot;livereload&quot;&gt;livereload&lt;/a&gt;的修改源文件刷新浏览器页面的功能也是有的。多端同步在开发响应式网站的时候相当有用，想想你电脑上有好几个浏览器，而且还手机端，pad端 上的浏览器，一个个打开去测多浪费时间呀！&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;browsersync&quot;&gt;browsersync&lt;/a&gt;通过启用一个&lt;code&gt;server&lt;/code&gt;的方式,通过访问这个&lt;code&gt;server&lt;/code&gt;的地址,就可以不用手动在页面上插入脚本或者去安装浏览器扩展了.有人可能会有疑惑,我已经有自己的&lt;code&gt;server&lt;/code&gt;了,例如&lt;code&gt;tomcat&lt;/code&gt;,那怎么办?别急,可以,把&lt;a href=&quot;browsersync&quot;&gt;browsersync&lt;/a&gt;的&lt;code&gt;server&lt;/code&gt;设置成代理的&lt;code&gt;server&lt;/code&gt;,这样访问&lt;a href=&quot;browsersync&quot;&gt;browsersync&lt;/a&gt;的&lt;code&gt;server&lt;/code&gt;的时候,会把所有请求都转发到你自己的&lt;code&gt;server&lt;/code&gt;上,棒!下面来看看我的配置吧!&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;browsersync&quot;&gt;browsersync&lt;/a&gt;通过启用一个&lt;code&gt;server&lt;/code&gt;的方式，通过访问这个&lt;code&gt;server&lt;/code&gt;的地址，就可以不用手动在页面上插入脚本或者去安装浏览器扩展了.有人可能会有疑惑，我已经有自己的&lt;code&gt;server&lt;/code&gt;了，例如&lt;code&gt;tomcat&lt;/code&gt;，那怎么办？别急，可以，把&lt;a href=&quot;browsersync&quot;&gt;browsersync&lt;/a&gt;的&lt;code&gt;server&lt;/code&gt;设置成代理的&lt;code&gt;server&lt;/code&gt;，这样访问&lt;a href=&quot;browsersync&quot;&gt;browsersync&lt;/a&gt;的&lt;code&gt;server&lt;/code&gt;的时候，会把所有请求都转发到你自己的&lt;code&gt;server&lt;/code&gt;上，棒!下面来看看我的配置吧！&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// autoprefixer 浏览器支持版本&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;browsersSupport&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;&amp;gt; 5%&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;last 2 versions&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Firefox &amp;lt; 20&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;browsersSupport&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;&amp;gt; 5%&amp;#39;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;，&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;last 2 versions&amp;#39;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;，&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Firefox &amp;lt; 20&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
 
 &lt;span class=&quot;cm&quot;&gt;/**&lt;/span&gt;
 &lt;span class=&quot;cm&quot;&gt; * 浏览器同步查看修改&lt;/span&gt;
 &lt;span class=&quot;cm&quot;&gt; * http://www.browsersync.io/docs/gulp/&lt;/span&gt;
 &lt;span class=&quot;cm&quot;&gt; */&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;browser-sync&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;browser-sync&amp;#39;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;，&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;nx&quot;&gt;browserSync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
     &lt;span class=&quot;cm&quot;&gt;/**&lt;/span&gt;
 &lt;span class=&quot;cm&quot;&gt;     * 二选一&lt;/span&gt;
@@ -90,13 +217,13 @@
 &lt;span class=&quot;cm&quot;&gt; * https://github.com/sindresorhus/gulp-autoprefixer&lt;/span&gt;
 &lt;span class=&quot;cm&quot;&gt; * https://github.com/floridoo/gulp-sourcemaps&lt;/span&gt;
 &lt;span class=&quot;cm&quot;&gt; */&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;sass&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;sass&amp;#39;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;，&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;scss&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sourcemaps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;errLogToConsole&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;outputStyle&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;nested&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}))&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;errLogToConsole&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;，&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;outputStyle&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;nested&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}))&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sourcemaps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;includeContent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}))&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 可以通过下面的链接去了解为什么要加上这两句&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sourcemaps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;loadMaps&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}))&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// https://github.com/floridoo/gulp-sourcemaps/issues/60&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;autoprefixer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;browsers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;browsersSupport&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cascade&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}))&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;autoprefixer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;browsers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;browsersSupport&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;，&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cascade&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}))&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sourcemaps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;./maps&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;css&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;filter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;**/*.css&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
@@ -104,11 +231,11 @@
 &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
 
 
-&lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;watchsass&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;sass&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;browser-sync&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;watch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;scss&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;sass&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;watchsass&amp;#39;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;，&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;sass&amp;#39;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;，&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;browser-sync&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;，&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;watch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;scss&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;，&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;sass&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;更多的配置,可以通过&lt;a href=&quot;browsersync&quot;&gt;browsersync&lt;/a&gt;官网去了解,配置很简单,却是十分的实用,感谢作者开源这样的工具.&lt;/p&gt;
+&lt;p&gt;更多的配置，可以通过&lt;a href=&quot;browsersync&quot;&gt;browsersync&lt;/a&gt;官网去了解，配置很简单，却是十分的实用，感谢作者开源这样的工具。&lt;/p&gt;
 
 
   &lt;p&gt;&lt;a href=&quot;/front-end-automation-browsersync-livereload/&quot;&gt;前端自动化工程之浏览器同步更新&lt;/a&gt; was originally published by Kimi at &lt;a href=&quot;&quot;&gt;T 馆&lt;/a&gt; on December 27, 2014.&lt;/p&gt;</content>

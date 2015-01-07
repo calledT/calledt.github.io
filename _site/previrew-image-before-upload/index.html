@@ -5,23 +5,23 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>当我在跑步时我在想些什么？ &#8211; T 馆</title>
-<meta name="description" content="当我跑步时没人陪我，不能谈些什么，只能想些什么。">
-<meta name="keywords" content="生活, 思考">
+<title>兼容IE、Chrome、FF的图片上传前预览 &#8211; T 馆</title>
+<meta name="description" content="图片上传前预览，兼容所有浏览器">
+<meta name="keywords" content="IE, 图片预览">
 
 <!-- Open Graph -->
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
-<meta property="og:title" content="当我在跑步时我在想些什么？">
-<meta property="og:description" content="当我跑步时没人陪我，不能谈些什么，只能想些什么。">
-<meta property="og:url" content="/running-with-thinking/">
+<meta property="og:title" content="兼容IE、Chrome、FF的图片上传前预览">
+<meta property="og:description" content="图片上传前预览，兼容所有浏览器">
+<meta property="og:url" content="/previrew-image-before-upload/">
 <meta property="og:site_name" content="T 馆">
 
 
 
 
 
-<link rel="canonical" href="/running-with-thinking/">
+<link rel="canonical" href="/previrew-image-before-upload/">
 <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="T 馆 Feed">
 
 <!-- http://t.co/dKP3o1e -->
@@ -118,7 +118,7 @@
     </div><!-- /.image-credit -->
   
   <div class="entry-image">
-    <img src="/images/abstract-3.jpg" alt="当我在跑步时我在想些什么？">
+    <img src="/images/abstract-4.jpg" alt="兼容IE、Chrome、FF的图片上传前预览">
   </div><!-- /.entry-image -->
 </div><!-- /.entry-header -->
 
@@ -129,46 +129,61 @@
       <div class="header-title-wrap">
         
           <h1 class="entry-title">
-            <a href="/running-with-thinking/" rel="bookmark" title="当我在跑步时我在想些什么？">当我在跑步时我在想些什么？</a>
+            <a href="/previrew-image-before-upload/" rel="bookmark" title="兼容IE、Chrome、FF的图片上传前预览">兼容IE、Chrome、FF的图片上传前预览</a>
           </h1>
         
-        <h2>2014-08-24</h2>
+        <h2>2015-01-06</h2>
         
       </div><!-- /.header-title-wrap -->
     </header>
     <div class="entry-content">
-      <h3 id="section">关于跑步</h3>
+      <h3 id="section">原由</h3>
 
-<p>前几周的一个机遇，饶有兴致的和同事下班后去附近的公园慢跑，然后就停不下来了。那次跑步之前，已经很久没有运动过了，现在连追个公交都会气喘，可想第一天去跑步是什么情形。17分钟的跑程，被人甩了将近一千米，而且还是女的这事我能乱说麽。痛定思痛之后，决定发奋图强。上网买了双跑鞋，周末在学校里跑，这是第二周也是第三次慢跑，昨天太冲了，一开始冲得太猛，跑了一半肚子痛得没法坚持下去，今天就汲取教训，一圈<strong>3.7公里</strong>下来，<strong>33分钟</strong>，出了汗还不累，要的就是这效果了。</p>
+<p>  最近在帮同事解决一个图片显示的问题，情形是这样的。图片通过异步上传，成功后返回一个图片的链接，再把这个链接赋给<code>img</code>标签的<code>src</code>属性，但这个过程会间歇性的出现<code>404</code>错误。
+<!-- more --></p>
 
-<h3 id="section-1">关于思考</h3>
+<p>  <code>404</code>我们知道是访问一个不存在的链接，但在浏览器中直接访问这个链接，又是可以的。反复排查了前端代码和后端代码，也没发现有错误的地方。再经过一番深入了解，知道上传图片的功能用的是内网的一个文件系统<a href="https://code.google.com/p/fastdfs" title="fastdfs" target="_blank">fasetdfs</a>，于是就想会不会是磁盘快满了才会出现这个问题，以前遇到过<a href="http://www.mysql.com" title="mysql" target="_blank">mysql</a>所在服务器因磁盘空间不够出现过各种诡异问题。</p>
 
-<p>村上春树有一本书叫《当我在跑步时我谈些什么》，虽然很喜欢他，也看了不少他的作品，但这本没看，所以不知道他跑步时在谈些什么。以此为引子来说说我跑步时在想些什么:</p>
+<p>  从负责这个文件系统架设的工程师那里拿到说是文件系统所在服务器的<code>IP</code>后就上去查磁盘空间大小（当时自己也不了解这个文件系统，以为这个 IP 所在的服务器就是存放文件的地方），看着磁盘空间还剩很多，就带着疑惑上网查找，发现那个工程师给我的并不是最终存放文件的服务器，只是<a href="http://nginx.org" title="nginx" target="_blank">nginx</a>所在的机器，在打开<code>nginx.conf</code>看到配置后，就一切明了了。</p>
 
+<p>  原来最终存放文件的是两台机器，<a href="http://nginx.org" title="nginx" target="_blank">nginx</a>担任负载均衡作用，而负载策略是随机的。随机的负载策略加上文件系统同步文件的时间差，就造成了上传响应成功，设置<code>img</code>标签的<code>src</code>属性出现<code>404</code>想象。</p>
+
+<p>解决的办法就是<a href="http://nginx.org" title="nginx" target="_blank">nginx</a>根据<code>IP</code>去负载或者设置文件系统为主从，根据我们的业务需求选择了主从。</p>
+
+<h3 id="section-1">图片上传前预览代码</h3>
+
+<p>  回过头想了想，发现这地方其实存在交互不合理的地方，正确的做法应该是图片在上传前可以预览，而不是一选择图片就上传然后返回图片的链接回来。所以写了以下兼容所有浏览器的图片上传前预览的代码。</p>
+
+<pre class="codepen" data-height="400" data-type="result" data-href="ZYBZze" data-user="calledT" data-safe="true">
+    <code></code>
+    <a href="http://codepen.io/calledT/embed/ZYBZze/">Check out this Pen!</a> 
+</pre>
+<script async="" src="http://codepen.io/assets/embed/ei.js"> </script>
+
+<h4 id="section-2">参考链接：</h4>
 <ul>
-  <li>想睡，不知道为什么这几次跑步时都有种昏昏欲睡的感觉，和看书那种状态差不多。可能是夕阳太美了，嗯，一定是这样的。</li>
-  <li>清醒了一下就想一想跑完了要怎么犒劳自己，等会鸡翅是要买一对呢，还是要买两个，真纠结。</li>
-  <li>大部分时间还是在想那些感兴趣的东西，比如今天去跑步前就看了好几篇关于<code>px</code>,<code>em</code>,<code>rem</code>使用的文章，就目前国内浏览器的状况来说，使用那个单位都不能完美，真是让我这种非处女座但追求完美的（就是有一丢丢强迫症）人感到难受。然后接下来大部分时间就在纠结接下来的项目到底要使用那个单位（这又可以写另外一篇文章了）。</li>
+  <li><a href="http://forums.asp.net/t/1320559.aspx" target="_blank">How to Preview image before Upload</a></li>
+  <li><a href="http://stackoverflow.com/questions/4459379/preview-an-image-before-it-is-uploaded?rq=1" target="_blank">Preview an image before it is uploaded</a></li>
 </ul>
 
 
       <footer class="entry-meta">
         <span class="entry-tags">
           
-            <a href="/tags/#生活" title="Pages tagged 生活" class="tag">生活</a>
+            <a href="/tags/#IE" title="Pages tagged IE" class="tag">IE</a>
           
-            <a href="/tags/#思考" title="Pages tagged 思考" class="tag">思考</a>
+            <a href="/tags/#图片预览" title="Pages tagged 图片预览" class="tag">图片预览</a>
           
         </span>
         <span>
-          <a href="/running-with-thinking/" rel="bookmark" title="当我在跑步时我在想些什么？">当我在跑步时我在想些什么？</a> was published on
+          <a href="/previrew-image-before-upload/" rel="bookmark" title="兼容IE、Chrome、FF的图片上传前预览">兼容IE、Chrome、FF的图片上传前预览</a> was published on
           <span class="entry-date date published updated">
-            <time datetime="2014-08-24T00:00:00+08:00">August 24, 2014</time>
+            <time datetime="2015-01-06T00:00:00+08:00">January 06, 2015</time>
           </span>
         </span>
         
           (revised: <span class="entry-date date modified">
-            <time datetime="2014-11-21">11/21/2014</time>
+            <time datetime="2015-01-06">01/06/2015</time>
           </span>)
         
         <span class="author vcard">
@@ -209,23 +224,23 @@
     <div class="read-more">
   
     <div class="read-more-header">
-      <a href="/firstblog/" class="read-more-btn">更多内容</a>
+      <a href="/sublimelinter-in-action/" class="read-more-btn">更多内容</a>
     </div><!-- /.read-more-header -->
     <div class="read-more-content">
-      <h3><a href="/previrew-image-before-upload/" title="兼容IE、Chrome、FF的图片上传前预览">兼容IE、Chrome、FF的图片上传前预览</a></h3>
-      <p>图片上传前预览，兼容所有浏览器 <a href="/previrew-image-before-upload/">Continue reading</a></p>
+      <h3><a href="/sublimelinter-in-action/" title="SublimeLinter实践">SublimeLinter实践</a></h3>
+      <p>sublimelinter在工程中的实际应用 <a href="/sublimelinter-in-action/">Continue reading</a></p>
     </div><!-- /.read-more-content -->
   
   <div class="read-more-list">
     
       <div class="list-item">
-        <h4><a href="/sublimelinter-in-action/" title="SublimeLinter实践">SublimeLinter实践</a></h4>
-        <span>Published on December 29, 2014</span>
+        <h4><a href="/front-end-automation-browsersync-livereload/" title="前端自动化工程之浏览器同步更新">前端自动化工程之浏览器同步更新</a></h4>
+        <span>Published on December 27, 2014</span>
       </div><!-- /.list-item -->
     
       <div class="list-item">
-        <h4><a href="/front-end-automation-browsersync-livereload/" title="前端自动化工程之浏览器同步更新">前端自动化工程之浏览器同步更新</a></h4>
-        <span>Published on December 27, 2014</span>
+        <h4><a href="/about-autologin/" title="自动登陆那点事">自动登陆那点事</a></h4>
+        <span>Published on November 24, 2014</span>
       </div><!-- /.list-item -->
     
   </div><!-- /.read-more-list -->

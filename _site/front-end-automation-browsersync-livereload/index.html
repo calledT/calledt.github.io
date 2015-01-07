@@ -141,51 +141,51 @@
 
 <h3 id="sublime-text-plugin--chrome-extends">sublime text plugin &amp; chrome extends</h3>
 
-<p>刚接触 <a href="sublime-text">sublime text</a>的时候,非常热衷于折腾插件,当时有一款 <a href="livereload">livereload</a>的<a href="https://sublime.wbond.net/packages/LiveReload">sublime插件</a>,配合浏览器安装的<a href="https://chrome.google.com/extensions/detail/jnihajbhpnppcggbcgedagnkighmdlei">livereload扩展</a>,安装完在扩展程序界面允许这个扩展访问文件网址,就可以通过 <code>file://</code>文件的形式或者以<code>server</code>的形式同步查看页面源文件修改之后在浏览器的效果,不用去手动刷新.这样的方式对于写简单的页面非常有用,你可以省却手动启动一个<code>server</code>的步骤,因为<a href="livereload">livereload</a>的<a href="https://sublime.wbond.net/packages/LiveReload">sublime插件</a>已经做了这件事.对于有超宽屏或者双显示器的页面重构人员,这相当令人激动的.
+<p>刚接触 <a href="sublime-text">sublime text</a>的时候，非常热衷于折腾插件，当时有一款 <a href="livereload">livereload</a>的<a href="https://sublime.wbond.net/packages/LiveReload">sublime插件</a>，配合浏览器安装的<a href="https://chrome.google.com/extensions/detail/jnihajbhpnppcggbcgedagnkighmdlei">livereload扩展</a>，安装完在扩展程序界面允许这个扩展访问文件网址，就可以通过 <code>file://</code>文件的形式或者以<code>server</code>的形式同步查看页面源文件修改之后在浏览器的效果，不用去手动刷新。这样的方式对于写简单的页面非常有用，你可以省却手动启动一个<code>server</code>的步骤，因为<a href="livereload">livereload</a>的<a href="https://sublime.wbond.net/packages/LiveReload">sublime插件</a>已经做了这件事。对于有超宽屏或者双显示器的页面重构人员，这相当令人激动的。
 <!-- more --></p>
 
-<p>为了写这篇文章,特意再去体验一把,因为我现在用的是<code>sublime text 3</code>,以前那个插件是给<code>sublime text 2</code>用的,发现现在有一个<a href="https://github.com/dz0ny/LiveReload-sublimetext2/tree/devel">devel version</a>,说是给<code>sublime text 3</code>的,但我装上,建了一个测试页面,点击浏览器上的 <a href="https://chrome.google.com/extensions/detail/jnihajbhpnppcggbcgedagnkighmdlei">livereload扩展</a>按钮,却提示</p>
+<p>为了写这篇文章，特意再去体验一把，因为我现在用的是<code>sublime text 3</code>，以前那个插件是给<code>sublime text 2</code>用的，发现现在有一个<a href="https://github.com/dz0ny/LiveReload-sublimetext2/tree/devel">devel version</a>，说是给<code>sublime text 3</code>的，但我装上，建了一个测试页面，点击浏览器上的 <a href="https://chrome.google.com/extensions/detail/jnihajbhpnppcggbcgedagnkighmdlei">livereload扩展</a>按钮，却提示</p>
 
 <blockquote>
   <p>Could not connect to LiveReload server. Please make sure that LiveReload 2.3 (or later) or another compatible server is running.</p>
 </blockquote>
 
-<p>一开始以为是浏览器插件的问题,上网搜也没找到多少有用信息,只是看到这个浏览器插件评论页有不少人也在抱怨这个问题.到这里都会认为真的是这个扩展在新版浏览器中的问题了.但是强迫症的我还是把<code>sublime text 2</code>装上,验证到底是不是浏览器插件的问题.</p>
+<p>一开始以为是浏览器插件的问题，上网搜也没找到多少有用信息，只是看到这个浏览器插件评论页有不少人也在抱怨这个问题，到这里都会认为真的是这个扩展在新版浏览器中的问题了，但是强迫症的我还是把<code>sublime text 2</code>装上，验证到底是不是浏览器插件的问题。</p>
 
-<p>最后的结论: <strong>不是 livereload 浏览器扩展的问题</strong>,是<code>sublime text 3</code>插件的问题.</p>
+<p>最后的结论: <strong>不是 livereload 浏览器扩展的问题</strong>，是<code>sublime text 3</code>插件的问题。</p>
 
 <h3 id="grunt-contrib-watch">grunt-contrib-watch</h3>
 
-<p>我在接触了<a href="grunt">grunt</a>之后,就放弃了上面那种使用方式.因为我会配置一套工作流来协助开发,<a href="livereload">livereload</a>会是工作流中的一个<code>task</code></p>
+<p>我在接触了<a href="grunt">grunt</a>之后，就放弃了上面那种使用方式。因为我会配置一套工作流来协助开发，<a href="livereload">livereload</a>会是工作流中的一个<code>task</code>。</p>
 
-<p>以前有一个叫<a href="https://github.com/gruntjs/grunt-contrib-livereload">grunt-contrib-livereload</a>的plugin,不过现在已经合并到<a href="https://github.com/gruntjs/grunt-contrib-watch#optionslivereload">grunt-contrib-watch</a>中去了.关于怎样配置任务可以去看<a href="https://github.com/gruntjs/grunt-contrib-watch/blob/master/docs/watch-examples.md#enabling-live-reload-in-your-html">enabling-live-reload-in-your-html</a>.</p>
+<p>以前有一个叫<a href="https://github.com/gruntjs/grunt-contrib-livereload">grunt-contrib-livereload</a>的plugin，不过现在已经合并到<a href="https://github.com/gruntjs/grunt-contrib-watch#optionslivereload">grunt-contrib-watch</a>中去了.关于怎样配置任务可以去看<a href="https://github.com/gruntjs/grunt-contrib-watch/blob/master/docs/watch-examples.md#enabling-live-reload-in-your-html">enabling-live-reload-in-your-html</a>。</p>
 
-<p>这种方式的相比上面那种方式的优点是配合<a href="grunt">grunt</a>的<code>task</code>,监控更改的文件类型更多了,毕竟现在好多开发者在使用<a href="sass">sass</a>,<a href="less">less</a>, <a href="coffeescript">coffeescript</a>这些预处理语言或者各式各样的模板引擎.</p>
+<p>这种方式的相比上面那种方式的优点是配合<a href="grunt">grunt</a>的<code>task</code>，监控更改的文件类型更多了，毕竟现在好多开发者在使用<a href="sass">sass</a>，<a href="less">less</a>， <a href="coffeescript">coffeescript</a>这些预处理语言或者各式各样的模板引擎。</p>
 
 <p>但这种方式我们还是需要安装浏览器插件或者在页面里嵌入类似下面的<code>livereload脚本</code></p>
 
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">&quot;//localhost:35729/livereload.js&quot;</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;</span></code></pre></div>
 
-<p>嵌入脚本的话上线的时候还得移除它,当然有工具可以在上线的时候处理掉这段脚本.但是这样终究显得有些不够全自动,呵呵.</p>
+<p>嵌入脚本的话上线的时候还得移除它，当然有工具可以在上线的时候处理掉这段脚本.但是这样终究显得有些不够全自动，呵呵。</p>
 
 <h2 id="browsersync">browsersync</h2>
 
-<p>在工具的选择上我算是一个比较喜新厌旧的人了.所以用过<a href="gulp">gulp</a>之后,我就不再写<a href="grunt">grunt</a>了.<a href="gulp">gulp</a>写起任务来比<a href="grunt">grunt</a>优雅多了,而且现在<a href="gulp">gulp</a>社区的繁荣,相比年初的时候,可以毫不犹豫的切换过来.</p>
+<p>在工具的选择上我算是一个比较喜新厌旧的人了！所以用过<a href="gulp">gulp</a>之后，我就不再写<a href="grunt">grunt</a>了。<a href="gulp">gulp</a>写起任务来比<a href="grunt">grunt</a>优雅多了，而且现在<a href="gulp">gulp</a>社区的繁荣，相比年初的时候，可以毫不犹豫的切换过来。</p>
 
-<p>好了,吐槽完毕,进入正题,接下来要介绍的工具叫<a href="browsersync">browsersync</a>,会用<code>gulpfile</code>来做示例, 但它是不依赖于<a href="gulp">gulp</a>或者<a href="grunt">grunt</a>的.</p>
+<p>好了，吐槽完毕，进入正题，接下来要介绍的工具叫<a href="browsersync">browsersync</a>，会用<code>gulpfile</code>来做示例，但它是不依赖于<a href="gulp">gulp</a>或者<a href="grunt">grunt</a>的。</p>
 
-<p><a href="browsersync">browsersync</a>是一款多端同步刷新页面内容的工具,这能大大节省开发测试的时间.比如你在 <code>chrome</code> 和 <code>IE</code>中打开同一个被 <a href="browsersync">browsersync</a> 监控的 URL, 在 <code>chrome</code> 页面表单中输入的内容会被同步到 <code>IE</code>浏览器中,用户操作也是能同步的,很酷是吧.当然啦,像<a href="livereload">livereload</a>的修改源文件刷新浏览器页面的功能也是有的.多端同步在开发响应式网站的时候相当有用,想想你电脑上有好几个浏览器,而且还手机端,pad端 上的浏览器,一个个打开去测多浪费时间呀.</p>
+<p><a href="browsersync">browsersync</a>是一款多端同步刷新页面内容的工具，这能大大节省开发测试的时间。比如你在 <code>chrome</code> 和 <code>IE</code>中打开同一个被 <a href="browsersync">browsersync</a> 监控的 URL，在 <code>chrome</code> 页面表单中输入的内容会被同步到 <code>IE</code>浏览器中，用户操作也是能同步的，很酷是吧.当然啦，像<a href="livereload">livereload</a>的修改源文件刷新浏览器页面的功能也是有的。多端同步在开发响应式网站的时候相当有用，想想你电脑上有好几个浏览器，而且还手机端，pad端 上的浏览器，一个个打开去测多浪费时间呀！</p>
 
-<p><a href="browsersync">browsersync</a>通过启用一个<code>server</code>的方式,通过访问这个<code>server</code>的地址,就可以不用手动在页面上插入脚本或者去安装浏览器扩展了.有人可能会有疑惑,我已经有自己的<code>server</code>了,例如<code>tomcat</code>,那怎么办?别急,可以,把<a href="browsersync">browsersync</a>的<code>server</code>设置成代理的<code>server</code>,这样访问<a href="browsersync">browsersync</a>的<code>server</code>的时候,会把所有请求都转发到你自己的<code>server</code>上,棒!下面来看看我的配置吧!</p>
+<p><a href="browsersync">browsersync</a>通过启用一个<code>server</code>的方式，通过访问这个<code>server</code>的地址，就可以不用手动在页面上插入脚本或者去安装浏览器扩展了.有人可能会有疑惑，我已经有自己的<code>server</code>了，例如<code>tomcat</code>，那怎么办？别急，可以，把<a href="browsersync">browsersync</a>的<code>server</code>设置成代理的<code>server</code>，这样访问<a href="browsersync">browsersync</a>的<code>server</code>的时候，会把所有请求都转发到你自己的<code>server</code>上，棒!下面来看看我的配置吧！</p>
 
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// autoprefixer 浏览器支持版本</span>
-<span class="kd">var</span> <span class="nx">browsersSupport</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&gt; 5%&#39;</span><span class="p">,</span> <span class="s1">&#39;last 2 versions&#39;</span><span class="p">,</span> <span class="s1">&#39;Firefox &lt; 20&#39;</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">browsersSupport</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&gt; 5%&#39;</span><span class="err">，</span> <span class="s1">&#39;last 2 versions&#39;</span><span class="err">，</span> <span class="s1">&#39;Firefox &lt; 20&#39;</span><span class="p">];</span>
 
 <span class="cm">/**</span>
 <span class="cm"> * 浏览器同步查看修改</span>
 <span class="cm"> * http://www.browsersync.io/docs/gulp/</span>
 <span class="cm"> */</span>
-<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">&#39;browser-sync&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">&#39;browser-sync&#39;</span><span class="err">，</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="nx">browserSync</span><span class="p">({</span>
     <span class="cm">/**</span>
 <span class="cm">     * 二选一</span>
@@ -202,13 +202,13 @@
 <span class="cm"> * https://github.com/sindresorhus/gulp-autoprefixer</span>
 <span class="cm"> * https://github.com/floridoo/gulp-sourcemaps</span>
 <span class="cm"> */</span>
-<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">&#39;sass&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">&#39;sass&#39;</span><span class="err">，</span> <span class="kd">function</span><span class="p">(</span><span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="nx">gulp</span><span class="p">.</span><span class="nx">src</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">src</span><span class="p">.</span><span class="nx">scss</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">sourcemaps</span><span class="p">.</span><span class="nx">init</span><span class="p">())</span>
-    <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">sass</span><span class="p">({</span><span class="nx">errLogToConsole</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">outputStyle</span><span class="o">:</span> <span class="s1">&#39;nested&#39;</span><span class="p">}))</span>
+    <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">sass</span><span class="p">({</span><span class="nx">errLogToConsole</span><span class="o">:</span> <span class="kc">true</span><span class="err">，</span> <span class="nx">outputStyle</span><span class="o">:</span> <span class="s1">&#39;nested&#39;</span><span class="p">}))</span>
     <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">sourcemaps</span><span class="p">.</span><span class="nx">write</span><span class="p">({</span><span class="nx">includeContent</span><span class="o">:</span> <span class="kc">false</span><span class="p">}))</span> <span class="c1">// 可以通过下面的链接去了解为什么要加上这两句</span>
     <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">sourcemaps</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span><span class="nx">loadMaps</span><span class="o">:</span> <span class="kc">true</span><span class="p">}))</span> <span class="c1">// https://github.com/floridoo/gulp-sourcemaps/issues/60</span>
-    <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">autoprefixer</span><span class="p">({</span><span class="nx">browsers</span><span class="o">:</span> <span class="nx">browsersSupport</span><span class="p">,</span> <span class="nx">cascade</span><span class="o">:</span> <span class="kc">false</span><span class="p">}))</span>
+    <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">autoprefixer</span><span class="p">({</span><span class="nx">browsers</span><span class="o">:</span> <span class="nx">browsersSupport</span><span class="err">，</span> <span class="nx">cascade</span><span class="o">:</span> <span class="kc">false</span><span class="p">}))</span>
     <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">sourcemaps</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">&#39;./maps&#39;</span><span class="p">))</span>
     <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">gulp</span><span class="p">.</span><span class="nx">dest</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">dest</span><span class="p">.</span><span class="nx">css</span><span class="p">))</span>
     <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="s1">&#39;**/*.css&#39;</span><span class="p">))</span>
@@ -216,11 +216,11 @@
 <span class="p">});</span>
 
 
-<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">&#39;watchsass&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;sass&#39;</span><span class="p">,</span> <span class="s1">&#39;browser-sync&#39;</span><span class="p">],</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-  <span class="nx">gulp</span><span class="p">.</span><span class="nx">watch</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">src</span><span class="p">.</span><span class="nx">scss</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;sass&#39;</span><span class="p">]);</span>
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">&#39;watchsass&#39;</span><span class="err">，</span> <span class="p">[</span><span class="s1">&#39;sass&#39;</span><span class="err">，</span> <span class="s1">&#39;browser-sync&#39;</span><span class="p">]</span><span class="err">，</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">gulp</span><span class="p">.</span><span class="nx">watch</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">src</span><span class="p">.</span><span class="nx">scss</span><span class="err">，</span> <span class="p">[</span><span class="s1">&#39;sass&#39;</span><span class="p">]);</span>
 <span class="p">});</span></code></pre></div>
 
-<p>更多的配置,可以通过<a href="browsersync">browsersync</a>官网去了解,配置很简单,却是十分的实用,感谢作者开源这样的工具.</p>
+<p>更多的配置，可以通过<a href="browsersync">browsersync</a>官网去了解，配置很简单，却是十分的实用，感谢作者开源这样的工具。</p>
 
 
       <footer class="entry-meta">
@@ -283,20 +283,20 @@
       <a href="/about-autologin/" class="read-more-btn">更多内容</a>
     </div><!-- /.read-more-header -->
     <div class="read-more-content">
-      <h3><a href="/about-autologin/" title="自动登陆那点事">自动登陆那点事</a></h3>
-      <p>也说说自动登陆的实现及存在问题 <a href="/about-autologin/">Continue reading</a></p>
+      <h3><a href="/previrew-image-before-upload/" title="兼容IE、Chrome、FF的图片上传前预览">兼容IE、Chrome、FF的图片上传前预览</a></h3>
+      <p>图片上传前预览，兼容所有浏览器 <a href="/previrew-image-before-upload/">Continue reading</a></p>
     </div><!-- /.read-more-content -->
   
   <div class="read-more-list">
     
       <div class="list-item">
-        <h4><a href="/running-with-thinking/" title="当我在跑步时我在想些什么？">当我在跑步时我在想些什么？</a></h4>
-        <span>Published on August 24, 2014</span>
+        <h4><a href="/sublimelinter-in-action/" title="SublimeLinter实践">SublimeLinter实践</a></h4>
+        <span>Published on December 29, 2014</span>
       </div><!-- /.list-item -->
     
       <div class="list-item">
-        <h4><a href="/firstblog/" title="最近的生活">最近的生活</a></h4>
-        <span>Published on June 15, 2014</span>
+        <h4><a href="/about-autologin/" title="自动登陆那点事">自动登陆那点事</a></h4>
+        <span>Published on November 24, 2014</span>
       </div><!-- /.list-item -->
     
   </div><!-- /.read-more-list -->
@@ -308,7 +308,7 @@
 <div class="footer-wrapper">
   <footer role="contentinfo">
     <span>
-  &copy; 2014 Kimi.
+  &copy; 2015 Kimi.
   Powered by <a href="http://jekyllrb.com">Jekyll</a>
   design by <a href="https://mademistakes.com">Michael Rose</a>.
 </span>
