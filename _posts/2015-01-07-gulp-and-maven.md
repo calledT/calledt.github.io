@@ -80,6 +80,7 @@ image:
 {% endhighlight %}
 
 [gulp]: http://gulpjs.com "gulp"
+[sass]: http://sass-lang.com "sass"
 [npm]: http://npmjs.com "npm"
 [maven]: http://maven.apache.org "maven"
 [java]: http://www.java.com "java"
