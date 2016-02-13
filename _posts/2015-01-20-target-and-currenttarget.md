@@ -11,22 +11,17 @@ image:
 ---
 
 ### event.target
-先来看看`event.target`的定义
 
 > This property of event objects is the object the event was dispatched on. It is different than event.currentTarget when the event handler is called in bubbling or capturing phase of the event.
 
-意思就是`event.target`这个事件对象是通过`event`这个对象分发出来的。它和`event.currentTarget`在事件冒泡和捕获阶段的处理函数中是不同的。
-
 ### event.currentTarget
-再看看`event.currentTarget`的定义
 
 > Identifies the current target for the event, as the event traverses the DOM. It always refers to the element the event handler has been attached to as opposed to event.target which identifies the element on which the event occurred.
 
-大概是说在事件穿透DOM的过程中，`event.currentTarget`在事件处理函数中始终代表当前的对象,而`event.target`代表的是目标事件发生时的对象。
+读定义总是很绕，要彻底了解这两者的区别，我们要先了解浏览器中事件传递的机制**冒泡**和**捕获**。
 
 ### 冒泡和捕获
 
-读定义总是很绕，要彻底了解这两者的区别，我们要先了解浏览器中事件传递的机制**冒泡**和**捕获**。
 在页面中点击一个元素，事件是从这个元素的祖先元素中逐层传递下来的，这个阶段为事件的捕获阶段。当事件传递到这个元素之后，又会把事件逐成传递回去，直到根元素为止，这个阶段是事件的冒泡阶段。
 
 <img src="http://ww4.sinaimg.cn/large/68250c36gw1eofufrk2kxj20cj0aht8w.jpg" alt="capturing" style="width: 49%;">
@@ -49,13 +44,13 @@ image:
     document.getElementById('a').addEventListener('click', function(e) {
       console.log('target:' + e.target.id + '&currentTarget:' + e.currentTarget.id);
     });    
-    document.getElementById('a').addEventListener('click', function(e) {
+    document.getElementById('b').addEventListener('click', function(e) {
       console.log('target:' + e.target.id + '&currentTarget:' + e.currentTarget.id);
     });    
-    document.getElementById('a').addEventListener('click', function(e) {
+    document.getElementById('c').addEventListener('click', function(e) {
       console.log('target:' + e.target.id + '&currentTarget:' + e.currentTarget.id);
     });    
-    document.getElementById('a').addEventListener('click', function(e) {
+    document.getElementById('d').addEventListener('click', function(e) {
       console.log('target:' + e.target.id + '&currentTarget:' + e.currentTarget.id);
     });
 </script>
