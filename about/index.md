@@ -12,7 +12,7 @@ comments: false
 
 曾经喜欢看F1，现在喜欢跑步，一直喜欢篮球。
 
-### 以下技术还是略知一二
+### 以下技术略知一二
 
 `JS` `CSS` `HTML` `CSS3` `HTML5` `NODEJS` `GIT` `REGEXP` `JAVA` `GRUNT` `PS` `UNIX` `GULP` `SASS` `LESS` `JASMINE` `KARMA` `SVN` `NGINX` `VIM` `MOCHA` `CHAI`
 
